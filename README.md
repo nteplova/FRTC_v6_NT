@@ -1,6 +1,6 @@
 # FRTC code Workspace v6 for [Astra-Box](https://github.com/temper8/Astra-Box)
 
-[Documentation](https://temper8.github.io/FRTC_DOC/)
+[Documentation](https://popovlab.github.io/FRTC_DOC/)
 
 v6 новая структура папок c разделением спектров и настроек frts
 - frtc - для хранения файлов с параметрами frtc

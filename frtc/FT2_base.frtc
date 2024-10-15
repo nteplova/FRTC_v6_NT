@@ -1,6 +1,6 @@
 {
-  "name": "FT2_01mm",
-  "comment": "FT2 test",
+  "name": "FT2_base",
+  "comment": "FT2_01mm",
   "physical_parameters": {
     "freq": 0.92,
     "xmi1": 1.0,
@@ -50,7 +50,11 @@
     "ismthout": 1,
     "inew": -1,
     "itor": 1,
-    "ipol": 1
+    "ipol": 1,
+    "upl_fix": false,
+    "upl_value": 0.0,
+    "fp_solver": 0,
+    "traj_len_seved": -1
   },
   "grill_parameters": {
     "Zplus": 5.0,

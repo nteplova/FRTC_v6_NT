@@ -1,6 +1,6 @@
 {
-  "name": "T15_R4",
-  "comment": "Тут можно писать комменты",
+  "name": "T15_base",
+  "comment": "T51_R4",
   "physical_parameters": {
     "freq": 2.45,
     "xmi1": 2.0,
@@ -53,7 +53,8 @@
     "ipol": 1,
     "upl_fix": true,
     "upl_value": 0.0,
-    "fp_solver": 0
+    "fp_solver": 0,
+    "traj_len_seved": -1
   },
   "grill_parameters": {
     "Zplus": 20.0,

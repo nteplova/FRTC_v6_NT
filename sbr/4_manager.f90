@@ -168,7 +168,7 @@ contains
     subroutine rini(traj, point, iw0)
         !! вычисление начальной точки входа луча
         use constants, only : zero
-        use rt_parameters, only : inew, nr, iw
+        use rt_parameters, only : inew, nr, iw, spectrum_axis
         use spectrum_mod, only : SpectrumPoint
         use decrements, only : dhdnr 
         use dispersion_module, only: ivar, yn3, izn, znakstart
@@ -207,10 +207,17 @@ contains
 
             ! вычисление g22 и g33
             call calculate_metrics(pa, tet)
-
-            yn3 = point%Ntor*dsqrt(g33)/co 
-            xm = point%Npol*dsqrt(g22)/si
-
+            select case(spectrum_axis)
+            case(0)
+                yn3 = point%Ntor*dsqrt(g33)/co 
+                xm = point%Npol*dsqrt(g22)/si
+            case(1)
+                yn3 = point%Ntor*dsqrt(g33)
+                xm = point%Npol*dsqrt(g22)
+            case DEFAULT
+                print *, 'bad spectrum axis'
+                stop
+            end select  
             num_roots = find_all_roots(pa,xm,tet,xnr_root)
              
             if (num_roots>0) then

@@ -105,12 +105,14 @@ module rt_parameters
 
     integer ::   spectrum_type
     !! spectrum type 1 - 1D, 2 = 2D, 3, scatter
-
+    logical ::   spectrum_PWM 
+    !! PWM approximaton on/off
+    integer ::   spectrum_axis 
+    !! coordinate system of spectrum
     logical  :: upl_fix
     !! floag for fixing upl value
     real(wp) :: upl_value
     !! used upl value 
-
     integer  :: fp_solver
     !! fp solfer 
     !! 0 default savelyev solver
@@ -135,10 +137,17 @@ module rt_parameters
       print*, "zminus = ", zminus     
       print*, "ntet = ",  ntet     
       print*, "nnz = ", nnz      
+      
       print*, "---------- options --------------"
       print*, "upl_fix = ", upl_fix
       print*, "upl_value = ", upl_value 
       print*, "fp_solver = ", fp_solver 
+
+      print*, "---------- spectrum --------------"
+      print*, "spectrum_type = ", spectrum_type
+      print*, "spectrum_PWM = ", spectrum_PWM 
+      print*, "spectrum_axis = ", spectrum_axis       
+
       
     end subroutine show_parameters
     
@@ -168,7 +177,7 @@ module rt_parameters
             upl_fix, upl_value, &
             fp_solver, traj_len_seved
         namelist /grill_parameters/ Zplus, Zminus, ntet, nnz
-        namelist /spectrum/ spectrum_type
+        namelist /spectrum/ spectrum_type, spectrum_PWM, spectrum_axis 
         ! Namelist definition===============================
 
         call open_inputfile(file_path, file_unit, iostat)

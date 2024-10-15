@@ -50,7 +50,10 @@
     "ismthout": 1,
     "inew": -1,
     "itor": 1,
-    "ipol": 1
+    "ipol": 1,
+    "upl_fix": true,
+    "upl_value": 0.0,
+    "fp_solver": 0
   },
   "grill_parameters": {
     "Zplus": 20.0,

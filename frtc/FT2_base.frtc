@@ -1,6 +1,6 @@
 {
   "name": "FT2_base",
-  "comment": "FT2_01mm",
+  "comment": "base config",
   "physical_parameters": {
     "freq": 0.92,
     "xmi1": 1.0,
@@ -10,7 +10,7 @@
     "dni2": 0.0,
     "xmi3": 12.0,
     "zi3": 6.0,
-    "dni3": 1.0
+    "dni3": 0.0
   },
   "alphas_parameters": {
     "itend0": 0,
@@ -57,8 +57,8 @@
     "traj_len_seved": 50
   },
   "grill_parameters": {
-    "Zplus": 5.0,
-    "Zminus": -5.0,
+    "Zplus": 8.0,
+    "Zminus": -8.0,
     "ntet": 15,
     "nnz": 100
   }

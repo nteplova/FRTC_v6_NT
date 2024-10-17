@@ -107,7 +107,7 @@ module rt_parameters
     !! spectrum type 1 - 1D, 2 = 2D, 3, scatter
     logical ::   spectrum_PWM 
     !! PWM approximaton on/off
-    integer ::   spectrum_axis 
+    integer ::   spectrum_coordinate_system
     !! coordinate system of spectrum
     logical  :: upl_fix
     !! floag for fixing upl value
@@ -146,7 +146,7 @@ module rt_parameters
       print*, "---------- spectrum --------------"
       print*, "spectrum_type = ", spectrum_type
       print*, "spectrum_PWM = ", spectrum_PWM 
-      print*, "spectrum_axis = ", spectrum_axis       
+      print*, "spectrum_coordinate_system = ", spectrum_coordinate_system       
 
       
     end subroutine show_parameters
@@ -177,7 +177,7 @@ module rt_parameters
             upl_fix, upl_value, &
             fp_solver, traj_len_seved
         namelist /grill_parameters/ Zplus, Zminus, ntet, nnz
-        namelist /spectrum/ spectrum_type, spectrum_PWM, spectrum_axis 
+        namelist /spectrum/ spectrum_type, spectrum_PWM, spectrum_coordinate_system 
         ! Namelist definition===============================
 
         call open_inputfile(file_path, file_unit, iostat)

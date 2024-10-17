@@ -1,9 +1,9 @@
 
 !----------------- Times -----------------
 TSTART = 0.011d0;
-TEND = 0.05;
+TEND = 0.03;
 TINIT = 0.026d0;
-TPAUSE = 0.05d0;
+TPAUSE = 0.03d0;
 TSCALE = 0.015d0;
 
 DROUT = 1.d-4;

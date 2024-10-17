@@ -54,7 +54,7 @@
     "upl_fix": false,
     "upl_value": 0.0,
     "fp_solver": 0,
-    "traj_len_seved": -1
+    "traj_len_seved": 50
   },
   "grill_parameters": {
     "Zplus": 5.0,

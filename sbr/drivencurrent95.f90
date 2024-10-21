@@ -74,6 +74,7 @@
 
     subroutine save_driven_current(pos_dc, neg_dc, time)
         use driven_current_module
+        use rt_parameters, only : nr
         implicit none
         type(DrivenCurrent), intent(in) :: pos_dc
         type(DrivenCurrent), intent(in) :: neg_dc
@@ -87,9 +88,14 @@
         open(newunit=iu, file=FNAME, status="replace", action="write")
 	    write(iu,'(10A16)'), 'index', 'pos_dc', 'neg_dc'
 
-        do i=1, pos_dc%grid_size
-            write (iu, *) i, pos_dc%outj(i), neg_dc%outj(i)
+
+        do i=1, nr
+            write (iu, *) i, pos_dc%current(i), neg_dc%current(i)
         end do
+
+        !do i=1, pos_dc%grid_size
+        !    write (iu, *) i, pos_dc%outj(i), neg_dc%outj(i)
+        !end do
 
         close(iu)
 
@@ -174,6 +180,9 @@
         !!      write(*,*)'ccur',ccur,' curdir=',curdir,' nr=',nr
         !!      write(*,*)'cu_out, MA=',cu_out,' cfull, A=',cfull
 
+        do j=1,nr
+            driven_current%current(j)=cur(j)*1.d-2    ! Jstoped, MA/m^2
+        end do
 
         currn=cur(1)                   ! Jstoped, A/cm^2
         currnt(1)=currn*1.d-2          ! Jstoped, MA/m^2

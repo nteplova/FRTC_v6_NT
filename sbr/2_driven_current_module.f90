@@ -19,6 +19,9 @@ module driven_current_module
     real(wp) :: c0
     !! ??
 
+    real(wp), dimension(:), allocatable :: current
+    !! current(nr)
+
     real(wp), dimension(:), allocatable :: outj
     !! outj(i)  = LH driven current density, MA/m^2
 
@@ -58,6 +61,7 @@ contains
 
     function DrivenCurrent_constructor(size) result(this)
         !- конструктор для DrivenCurrent
+        use rt_parameters, only : nr
         implicit none
         type(DrivenCurrent) :: this
         integer, value :: size
@@ -66,6 +70,8 @@ contains
         this%cu0 = 0   
         this%c   = 0
         this%c0  = 0
+
+        allocate(this%current(nr))
 
         this%grid_size = size
         allocate(this%outj(size), this%ohj(size))

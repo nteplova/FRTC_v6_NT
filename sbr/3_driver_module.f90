@@ -754,6 +754,7 @@ contains
                     iat=iat+1
                     if(iat.gt.maxat) then
                         if(ipri.gt.1) write (*,*)'turn in driver4 failed'
+                        ivar=0
                         goto 40
                     end if
                     eps1=eps1/2.d0

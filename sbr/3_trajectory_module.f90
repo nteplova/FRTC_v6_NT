@@ -351,7 +351,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         xnr = xnr_root(1)
         if (num_roots == 0) then
             print *,'no roots'
-            pause
+            !pause
         endif
 
         ynz0 = ynz

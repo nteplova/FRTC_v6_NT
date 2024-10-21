@@ -134,18 +134,18 @@
         ! initial constants
         !---------------------------------------------------
         !pqe=4.803e-10
-        vt0=fvt(zero)
-        ccur=pqe*vt0*0.333d-9
-        curdir=-dble(ispectr)
+        vt0 = fvt(zero)
+        ccur = pqe*vt0*0.333d-9
+        curdir = -dble(ispectr)
 
-        cfull=zero
-        cfull0=zero
-        k=(3-ispectr)/2
-        do j=1,nr
-            do i=1,i0
-                vj(i)=vij(i,j) !Vpar/Vt
-                fj0(i)=fij0(i,j,k)
-                fj(i)=fij(i,j,k)-fij0(i,j,k)
+        cfull = zero
+        cfull0 = zero
+        k = (3-ispectr)/2
+        do j=1, nr
+            do i=1, i0
+                vj(i)  = vij(i,j) !Vpar/Vt
+                fj0(i) = fij0(i,j,k)
+                fj(i)  = fij(i,j,k)-fij0(i,j,k)
             end do
             r=dble(j)/dble(nr+1)
             if(inew.eq.0) then !vardens
@@ -153,14 +153,15 @@
             else
                 pn=fn2(r,fnr,fnrr)
             end if
-            vt=fvt(r)
-            vto=vt/vt0
-            curs  = currlhcd(vj,fj)
-            cur(j)=curs*pn*ccur*curdir*vto  !Ampere/cm2
-            cfull=cfull+cur(j)*sk(j)
-            curs0 = currlhcd(vj,fj0)          
-            cur0(j)=curs0*pn*ccur*curdir*vto  !Ampere/cm2
-            cfull0=cfull0+cur0(j)*sk(j)
+            vt  = fvt(r)
+            vto = vt/vt0
+            curs   = currlhcd(vj,fj)
+            cur(j) = curs*pn*ccur*curdir*vto  !Ampere/cm2
+            cfull  = cfull+cur(j)*sk(j)
+
+            curs0   = currlhcd(vj,fj0)          
+            cur0(j) = curs0*pn*ccur*curdir*vto  !Ampere/cm2
+            cfull0  = cfull0+cur0(j)*sk(j)
         end do
 
         !cuj=cfull*1d-6   !driven current, MA
@@ -172,8 +173,6 @@
         !!      write(*,*)
         !!      write(*,*)'ccur',ccur,' curdir=',curdir,' nr=',nr
         !!      write(*,*)'cu_out, MA=',cu_out,' cfull, A=',cfull
-        !!           close(111)
-        !      pause
 
 
         currn=cur(1)                   ! Jstoped, A/cm^2

@@ -338,7 +338,7 @@ contains
         open(newunit=iu, file=fname, status="replace", action="write")
 	    write(iu,'(A5, 10A16)'), 'index', 'pwe', 'pdl', 'pdc', 'sk', 'vk'
 
-        do i=1, nr-1
+        do i=1, nr
             pwe= (pdl(i)+pdc(i))/vk(i)
             write (iu, '(i6,5(ES22.14))') i, pwe, pdl(i), pdc(i), sk(i), vk(i)
         end do

@@ -211,10 +211,10 @@ contains
             select case(spectrum_coordinate_system)
             case(0) ! toroidal coordinates
                 yn3 = point%Ntor*dsqrt(g33)
-                xm = point%Npol*dsqrt(g22)
+                xm  = point%Npol*dsqrt(g22)
             case(1) ! magnetic coordinates
                 yn3 = point%Ntor*dsqrt(g33)/co 
-                xm = point%Npol*dsqrt(g22)/si
+                xm  = point%Npol*dsqrt(g22)/si
             case DEFAULT
                 print *, 'bad spectrum coordinate system'
                 stop

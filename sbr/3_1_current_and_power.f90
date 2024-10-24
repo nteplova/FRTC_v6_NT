@@ -129,9 +129,9 @@ subroutine find_achieved_radial_points(nvpt)
 end subroutine    
 
 subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
-    use constants
-    use plasma
-    use rt_parameters
+    use constants, only: clt, zero
+    use plasma, only: cltn, zza, vk, valfa, vperp ! def vperp(50,100) ????
+    use rt_parameters, only: pchm, itend0, kv
     implicit none
     integer, intent(in)  :: i, j, ifast
     real(wp), intent(in) :: v, powpr, pil, pic, pia, df, decv, refr, vlf, vrt

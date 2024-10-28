@@ -133,7 +133,7 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
     use plasma, only: cltn, zza, vk, valfa, vperp ! def vperp(50,100) ????
     use rt_parameters, only: pchm, itend0, kv
     implicit none
-    integer, intent(in)  :: i, j, ifast
+    integer,  intent(in) :: i, j, ifast
     real(wp), intent(in) :: v, powpr, pil, pic, pia, df, decv, refr, vlf, vrt
     integer k
     real(wp) :: pchgl, pchgc, pchga, denom, powlandau, powdamped

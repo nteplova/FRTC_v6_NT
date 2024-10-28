@@ -26,7 +26,6 @@ module iterator_mod
 contains
 
     subroutine distr(vz,j,ifound,fder)
-        !use iterator_mod
         use lock_module      
         implicit none
         integer, intent(in) :: j
@@ -78,9 +77,6 @@ contains
         use rt_parameters, only: nr
         use plasma, only: fvt, vt0, cltn
         use maxwell, only: i0, vij, dfij, dij
-        !use iterator_mod, only: dfundv
-        !use iterator_mod, only: ipt
-        !use iterator_mod, only: vrj, dj, vgrid
         use lock_module, only: lock, linf
         implicit none
         integer, intent(in) :: ispectr
@@ -154,7 +150,6 @@ contains
         use current, only: vzmin, vzmax
         use maxwell, only: i0, vij, dfij
         use lock_module        
-        !use iterator_mod
         implicit none
         integer, intent(in) :: ispectr, iterat
         

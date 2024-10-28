@@ -405,7 +405,7 @@ contains
         use current, only: dqi0, ppv1, ppv2
         use current, only: dql, dq1, dq2, dncount, vzmin, vzmax
         use current, only: pdl, pdc, pda, pdfast
-        use iterator_mod
+        use iterator_mod, only:  psum4, pnab, plost
         use plasma, only: cltn
         implicit none
         ppv1=zero

@@ -173,7 +173,7 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
     if(powlandau.gt.pchm) then !strong absorption
         ppv1=ppv1+pchgl
         if(dabs(df).gt.absorption_tiny) then
-            dd=dabs(-pchgl/vk(j)/(df*1.d10))
+            dd = abs(-pchgl/df/vk(j)) * 1.d-10
             dncount(i,j)=dncount(i,j)+1.d0
         else
             dd=zero
@@ -181,7 +181,7 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
         dq1(i,j)=dq1(i,j)+dd
     else  ! weak absorption
         ppv2=ppv2+pchgl
-        dd=dabs(2.d0*decv*powpr*1.d-10/vk(j))
+        dd = abs(2.d0*decv*powpr/vk(j)) * 1.d-10
         dncount(i,j)=dncount(i,j)+1.d0
         dq2(i,j)=dq2(i,j)+dd
     end if

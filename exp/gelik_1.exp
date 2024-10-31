@@ -9,7 +9,7 @@ ELONM           2.                 !elong. of the chamber
 TRICH           0.4                 !trian. of the chamber
 ELONG           1.8                 !elong. of the LCMS
 TRIAN           0.4                 !trian. of the LCMS
-AMJ             2.                  !mass of main ions
+AMJ             1.                  !mass of main ions
 ZMJ             1.                  !charge of main ions
 BTOR            0.8
 SHIFT           0.0 

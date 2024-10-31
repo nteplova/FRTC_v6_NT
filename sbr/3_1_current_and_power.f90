@@ -129,11 +129,11 @@ subroutine find_achieved_radial_points(nvpt)
 end subroutine    
 
 subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
-    use constants
-    use plasma
-    use rt_parameters
+    use constants, only: clt, zero
+    use plasma, only: cltn, zza, vk, valfa, vperp ! def vperp(50,100) ????
+    use rt_parameters, only: pchm, itend0, kv
     implicit none
-    integer, intent(in)  :: i, j, ifast
+    integer,  intent(in) :: i, j, ifast
     real(wp), intent(in) :: v, powpr, pil, pic, pia, df, decv, refr, vlf, vrt
     integer k
     real(wp) :: pchgl, pchgc, pchga, denom, powlandau, powdamped
@@ -152,28 +152,28 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
         if(v.lt.vzmin(j)) vzmin(j)=v
         if(v.gt.vzmax(j)) vzmax(j)=v
     end if
-    pchgl=zero
-    pchgc=zero
-    pchga=zero
-    denom=pil+pic+pia
-    powlandau=1.d0-dexp(-2.d0*pil)
-    powdamped=1.d0-dexp(-2.d0*denom)
-    domin=powpr*powdamped
+    pchgl = zero
+    pchgc = zero
+    pchga = zero
+    denom = pil + pic + pia
+    powlandau = 1.d0 - exp(-2.d0*pil)
+    powdamped = 1.d0 - exp(-2.d0*denom)
+    domin = powpr * powdamped
     if(denom.ne.zero) then
         !!       pchgl=powpr*(1.d0-dexp(-2d0*pil))
         !!       pchgc=powpr*dexp(-2d0*pil)*dabs(-2d0*pic)
         !!       pchga=powpr*dexp(-2d0*pil)*dabs(-2d0*pia)
-        fff=domin/denom
-        pchgl=dabs(pil*fff)
-        pchgc=dabs(pic*fff)
-        pchga=dabs(pia*fff)
+        fff = domin/denom
+        pchgl = abs(pil*fff)
+        pchgc = abs(pic*fff)
+        pchga = abs(pia*fff)
     end if
     dd=zero
     if(pil.eq.zero) go to 1 !no Landau absorption
     if(powlandau.gt.pchm) then !strong absorption
         ppv1=ppv1+pchgl
         if(dabs(df).gt.absorption_tiny) then
-            dd=dabs(-pchgl/vk(j)/(df*1.d10))
+            dd = abs(-pchgl/df/vk(j)) * 1.d-10
             dncount(i,j)=dncount(i,j)+1.d0
         else
             dd=zero
@@ -181,7 +181,7 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
         dq1(i,j)=dq1(i,j)+dd
     else  ! weak absorption
         ppv2=ppv2+pchgl
-        dd=dabs(2.d0*decv*powpr*1.d-10/vk(j))
+        dd = abs(2.d0*decv*powpr/vk(j)) * 1.d-10
         dncount(i,j)=dncount(i,j)+1.d0
         dq2(i,j)=dq2(i,j)+dd
     end if

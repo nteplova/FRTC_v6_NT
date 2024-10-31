@@ -36,7 +36,7 @@ module rt_parameters
 
 !!!!!!!!!!!!! numerical parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     integer  ::  nr     
-    !! nr,  radial grid number  <= 505
+    !! nr,  radial grid number  <= 505 (number of mag surface for FRTC)
     real(wp) ::  hmin1
     !! hmin1, rel.(hr) min. step in the Fast comp. mode, <1.d0
     real(wp) ::  rrange

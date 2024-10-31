@@ -296,6 +296,7 @@ contains
     subroutine find_volums_and_surfaces
         use constants
         use rt_parameters, only: nr
+        use math_module, only: gaussint
         implicit none
         integer j
         real(wp) hr, rxx, vk0, sk0
@@ -497,10 +498,13 @@ contains
 
     end subroutine
 
-    real(wp) function obeom(ptet,pa)
+    function obeom(ptet,pa) result(res)
         use constants
         use approximation
         implicit real*8 (a-h,o-z)
+        real(wp), intent(in)    :: ptet
+        real(wp), intent(in)    :: pa
+        real(wp)                :: res
         !common /a0befr/ pi,pi2
         !common /a0ef1/ cltn
         !common /a0k/ cdl(10),cly(10),cgm(10),cmy(10),ncoef
@@ -530,13 +534,16 @@ contains
         g33=x0**2
         xj=(dzdr*dxdt-dxdr*dzdt)**2  !gg=g11*g22-g12*g12
         g=xj*g33
-        obeom=dsqrt(g)
+        res=dsqrt(g)
     end
 
-    real(wp) function ploshad(ptet,pa)
+    function ploshad(ptet,pa) result(res)
         use constants
         use approximation
         implicit real*8 (a-h,o-z)
+        real(wp), intent(in)    :: ptet
+        real(wp), intent(in)    :: pa
+        real(wp)                :: res
         !common /a0befr/ pi,pi2
         !common /a0ef1/ cltn
         !common /a0k/ cdl(10),cly(10),cgm(10),cmy(10),ncoef
@@ -564,58 +571,8 @@ contains
         g22=dxdt**2+dzdt**2
         g12=dxdr*dxdt+dzdr*dzdt
         xj=(dzdr*dxdt-dxdr*dzdt)**2  !gg=g11*g22-g12*g12
-        ploshad=dsqrt(xj)
+        res=dsqrt(xj)
     end
 
-    real(wp) function gaussint(f,a,b,r,eps)
-    !! что-то про гаусс
-        implicit none
-        real(wp) w(12), x(12)
-        real(wp) f, a, b, r, eps
-        real(wp) aa, bb, c1, c2, s8, s16, u, y, delta
-        integer i
-        !!      save w,x,const !sav#
-        real(wp), parameter :: const = 1.0d-12
-        data w &
-        /0.101228536290376, 0.222381034453374, 0.313706645877887, &
-         0.362683783378362, 0.027152459411754, 0.062253523938648, &
-         0.095158511682493, 0.124628971255534, 0.149595988816577, &
-         0.169156519395003, 0.182603415044924, 0.189450610455069/
-        data x &
-        /0.960289856497536, 0.796666477413627, 0.525532409916329, &
-         0.183434642495650, 0.989400934991650, 0.944575023073233, &
-         0.865631202387832, 0.755404408355003, 0.617876244402644, &
-         0.458016777657227, 0.281603550779259, 0.095012509837637/
-        delta=const*dabs(a-b)
-        gaussint=0d0
-        aa=a
-  5     y=b-aa
-        if (dabs(y).le.delta) return
-  2     bb=aa+y
-        c1=0.5d0*(aa+bb)
-        c2=c1-aa
-        s8=0d0
-        s16=0d0
-        do i = 1,4
-            u=x(i)*c2
-            s8=s8+w(i)*(f(c1+u,r)+f(c1-u,r))
-        end do 
-        do i = 5,12
-            u=x(i)*c2
-            s16=s16+w(i)*(f(c1+u,r)+f(c1-u,r))
-        end do
-        s8=s8*c2
-        s16=s16*c2
-        if(dabs(s16-s8) .gt. eps*(1d0+dabs(s16))) go to 4
-        gaussint=gaussint+s16
-        aa=bb
-        go to 5
-  4     y=0.5d0*y
-        if(dabs(y) .gt. delta) go to 2
-        write(*,7)
-        gaussint=0d0
-        return
-  7     format(1x,'gaussint ... too high accuracy required')
-    end
 
 end module plasma

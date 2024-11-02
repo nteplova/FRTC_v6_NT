@@ -368,12 +368,13 @@ contains
             rxx(j+1)=hr*dble(j)
         end do
 
+        do j=1,nr
+            pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
+        end do
+        pwe(1)=pwe(2)
+        pwe(nr+2)=zero
+
         if(ismthout.ne.0) then
-            do j=1,nr
-                pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
-            end do
-            pwe(1)=pwe(2)
-            pwe(nr+2)=zero
             do i=1,nrr
                 wrk(i)=pwe(i)
             end do

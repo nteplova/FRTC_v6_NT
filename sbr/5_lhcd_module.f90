@@ -319,7 +319,7 @@ contains
 
         real(wp)      :: pwe
         integer       :: iu, i
-        character(32) :: folder
+        character(20) :: folder
         character(64) :: fname
     
         print *, 'write_lhcd_power time=', time_stamp
@@ -332,8 +332,6 @@ contains
     
         write(fname,'(A, f9.7,".dat")') folder, time_stamp
         print *, fname        
-
-
 
         open(newunit=iu, file=fname, status="replace", action="write")
 	    write(iu,'(A5, 10A16)'), 'index', 'pwe', 'pdl', 'pdc', 'sk', 'vk'

@@ -128,6 +128,32 @@ subroutine find_achieved_radial_points(nvpt)
     end if
 end subroutine    
 
+subroutine refresh_vzmax_vzmin(v, i)
+    !! refresh vzmax and vzmin
+    !! This needs for protect grid collapse
+    use constants, only: clt
+    use plasma, only: cltn
+    implicit none
+    real(wp), intent(in) :: v
+    integer,  intent(in) :: i
+    if (v.lt.vzmin(i)) then 
+        if (v.gt.cltn/3) then
+            vzmin(i)=v
+        else
+            vzmin(i)=cltn/3
+        endif
+    endif
+    if (v.gt.vzmax(i)) then
+        vzmax(i)=v
+        if (v.gt.cltn*2/3) then
+            vzmax(i)=cltn*2/3
+        else
+            vzmax(i)=v
+        endif
+        !print *, 'vzmin =', vzmin(i), 'i=', i
+    endif
+end subroutine
+
 subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
     use constants, only: clt, zero
     use plasma, only: cltn, zza, vk, valfa, vperp ! def vperp(50,100) ????
@@ -149,8 +175,7 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
 
     if(v.gt.cltn) return
     if(pil.gt.zero) then
-        if(v.lt.vzmin(j)) vzmin(j)=v
-        if(v.gt.vzmax(j)) vzmax(j)=v
+        call refresh_vzmax_vzmin(v, j)
     end if
     pchgl = zero
     pchgc = zero

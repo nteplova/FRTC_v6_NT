@@ -326,7 +326,7 @@ contains
         cf4=xnr
         cf5=yn2
         vz=cltn/dabs(ynz)
-        if(vz.gt.cltn) vz=cltn !sav2010
+        !if(vz.gt.cltn) vz=cltn !sav2010
         vt=fvt(pa)
         !jr=jfoundr
         icf1=iw

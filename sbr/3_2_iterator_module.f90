@@ -2,7 +2,7 @@ module iterator_mod
     use kind_module   
     implicit none
     real(wp) :: vmid(100),vz1(100),vz2(100)
-    integer  :: ibeg(100),iend(100)
+    !integer  :: ibeg(100),iend(100)
 
     real(wp) :: vrj(101),dj(101),djnew(1001)
     real(wp) :: dj2(101),d2j(101)
@@ -58,9 +58,16 @@ contains
             pause'next key = stop'
             stop
         else if(ierr.eq.2) then !vz > vgrid(nvpt,j)
-            write(*,*)'exception: ierr=2 in distr()'
-            pause'next key = stop'
-            stop
+            !write(*,*)'exception: ierr=2 in distr()'
+            print *, 'vz > vgrid(nvpt,j)'
+            ifound=nvp
+            vlf=vzj(nvp)
+            vrt=vz
+            fder=0
+            dflf=0
+            dfrt=0
+            !pause'next key = stop'
+            !stop
         else if(ierr.eq.3) then
             write(*,*)'exception in distr, klo=khi=',klo,' j=',j,' nvp=',nvp
             write(*,*)'vz=',vz,' v1=',vzj(1),' v2=',vzj(nvp)

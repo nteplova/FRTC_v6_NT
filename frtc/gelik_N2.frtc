@@ -1,6 +1,6 @@
 {
-  "name": "Globus-M2_base_gelik",
-  "comment": "base config",
+  "name": "gelik_N2",
+  "comment": "config for full wave compare",
   "physical_parameters": {
     "freq": 0.2,
     "xmi1": 2.0,
@@ -47,7 +47,7 @@
     "iw": -1,
     "ismth": 1,
     "ismthalf": 0,
-    "ismthout": 1,
+    "ismthout": 0,
     "inew": 1,
     "itor": 1,
     "ipol": 1,
@@ -57,8 +57,8 @@
     "traj_len_seved": -1
   },
   "grill_parameters": {
-    "Zplus": 20.0,
-    "Zminus": -20.0,
+    "Zplus": 5.0,
+    "Zminus": -5.0,
     "ntet": 21,
     "nnz": 51
   }

@@ -11,9 +11,7 @@
       "title": "профили токов",
       "y_label": "Value [arb. unit]",
       "data": [
-        "J",
-        "Jlh",
-        "Johm"
+        "Jlh"
       ]
     },
     {
@@ -30,8 +28,7 @@
       "title": "профили мощности",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Plh",
-        "Poh"
+        "Plh"
       ]
     },
     {

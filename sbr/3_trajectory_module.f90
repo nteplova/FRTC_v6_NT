@@ -137,7 +137,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
             if (traj_len_seved< 0) then
                 traj_size= traj%size
             else
-                traj_size= traj_len_seved
+                traj_size = min(traj%size, traj_len_seved)
             endif
             do i=1, traj_size
                 tp = traj%points(i)

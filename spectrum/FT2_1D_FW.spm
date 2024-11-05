@@ -1,0 +1,11 @@
+{
+  "name": "FT2_1D_FW",
+  "comment": "",
+  "spectrum": {
+    "kind": "spectrum_1D",
+    "source": "FT2_10.dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": true
+  }
+}

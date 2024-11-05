@@ -84,7 +84,8 @@ contains
             allocate(delta(N),ell(N),gamm(N),amy(N), source=0.0_wp)
         end if
 
-        open(20,file='sshift_gelik.dat')
+        open(20,file='sshift05.dat')   !!!FT2
+        !open(20,file='sshift_gelik.dat')  !!!Globus-M2
         do i=1, ngrid
             read(20,*) sshift(i)
             rh(i)=AMETR(i)/ABC

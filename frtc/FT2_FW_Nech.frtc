@@ -59,7 +59,7 @@
   "grill_parameters": {
     "Zplus": 6.5,
     "Zminus": -6.5,
-    "ntet": 15,
+    "ntet": 31,
     "nnz": 51
   }
 }

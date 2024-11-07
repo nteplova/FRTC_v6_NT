@@ -85,13 +85,13 @@ contains
         end if
 
        ! open(20,file='sshift05.dat')   !!!FT2
-        !open(20,file='sshift_gelik.dat')  !!!Globus-M2
+        open(20,file='sshift_gelik.dat')  !!!Globus-M2
         do i=1, ngrid
-           ! read(20,*) sshift(i)
+            read(20,*) sshift(i)  !!!!!!!!!!
             rh(i)=AMETR(i)/ABC
             rha(i)=RHO(i)/ABC  !/ABC instead of /ROC is not a mistake!
-            !delta(i)=(sshift(1)-sshift(i))/ABC  !FRTC Shafr. shift. defin.
-            delta(i)=(SHIF(1)-SHIF(i))/ABC  !FRTC Shafr. shift. defin.
+            delta(i)=(sshift(1)-sshift(i))/ABC  !FRTC Shafr. shift. defin.  !!!!!!!
+            !delta(i)=(SHIF(1)-SHIF(i))/ABC  !FRTC Shafr. shift. defin.
             ell(i)=ELON(i)
             gamm(i)=rh(i)*TRIA(i)
             con(i)=NE(i)
@@ -104,7 +104,7 @@ contains
                 afld(i)=UPL(i)/RTOR/GP2 
             endif
         end do
-       ! close(20)
+        close(20) !!!!!!!!!!!!!!!!!!!!!!!!!!!
         rh(ngrid)=1.d0
         rh1=rh(1)          !saving the first ASTRA radial grid element
         rh(1) = 0.0d0         !shifting the first element to zero

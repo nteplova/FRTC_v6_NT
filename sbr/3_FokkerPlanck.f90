@@ -137,9 +137,9 @@ subroutine fokkerplanck_compute(time, TAU)
             pause
             stop
         end if
-        d1(i) = dj(klo1)
-        d2(i) = dj(klo2)
-        d3(i) = dj(klo3)	
+        d1(i) = 0.0d0 !dj(klo1)
+        d2(i) = 0.0d0 !dj(klo2)
+        d3(i) = 0.0d0 !dj(klo3)	
     end do
 
 end subroutine

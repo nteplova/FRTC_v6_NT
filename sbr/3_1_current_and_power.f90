@@ -206,7 +206,7 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
         dq1(i,j)=dq1(i,j)+dd
     else  ! weak absorption
         ppv2=ppv2+pchgl
-        dd = abs(2.d0*decv*powpr/vk(j)) * 1.d-10
+        dd = zero !!!!abs(2.d0*decv*powpr/vk(j)) * 1.d-10
         dncount(i,j)=dncount(i,j)+1.d0
         dq2(i,j)=dq2(i,j)+dd
     end if

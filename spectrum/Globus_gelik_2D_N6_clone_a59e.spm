@@ -1,9 +1,9 @@
 {
-  "name": "Globus_gelik_2D_N4",
+  "name": "Globus_gelik_2D_N6_clone_a59e",
   "comment": "t15pam4rbox_2D_correct.dat",
   "spectrum": {
     "kind": "scatter_spectrum",
-    "source": "SpN42D.dat",
+    "source": "SpN62D.dat",
     "coordinate_system": 0,
     "angle": 0.0,
     "PWM": true

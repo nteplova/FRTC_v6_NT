@@ -57,8 +57,8 @@
     "traj_len_seved": -1
   },
   "grill_parameters": {
-    "Zplus": 20.0,
-    "Zminus": -20.0,
+    "Zplus": 10.0,
+    "Zminus": -10.0,
     "ntet": 21,
     "nnz": 51
   }

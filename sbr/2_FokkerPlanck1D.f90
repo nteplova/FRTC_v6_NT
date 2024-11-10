@@ -132,9 +132,9 @@ module FokkerPlanck1D_mod ! the module name defines the namespace
                 pause
                 stop
             end if
-            this%d1(i) =0.0d0 ! dif(klo1)
-            this%d2(i) =0.0d0 ! dif(klo2)
-            this%d3(i) =0.0d0 !dif(klo3)	
+            this%d1(i) = dif(klo1)
+            this%d2(i) = dif(klo2)
+            this%d3(i) = dif(klo3)	
         end do
       end subroutine FokkerPlanck1D_init_diffusion
 

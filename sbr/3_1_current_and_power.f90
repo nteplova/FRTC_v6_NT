@@ -194,24 +194,24 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
         pchga = abs(pia*fff)
     end if
     dd=zero
-    if(pil.eq.zero) go to 1 !no Landau absorption
-    if(powlandau.gt.pchm) then !strong absorption
-        ppv1=ppv1+pchgl
-        if(dabs(df).gt.absorption_tiny) then
-            dd = abs(-pchgl/df/vk(j)) * 1.d-10
+    if(pil.gt.zero) then  !Landau absorption
+        if(powlandau.gt.pchm) then !strong absorption
+            ppv1=ppv1+pchgl
+            if(dabs(df).gt.absorption_tiny) then
+                dd = abs(-pchgl/df/vk(j)) * 1.d-10
+                dncount(i,j)=dncount(i,j)+1.d0
+            else
+                dd=zero
+            end if
+            dq1(i,j)=dq1(i,j)+dd
+        else  ! weak absorption
+            ppv2=ppv2+pchgl
+            dd = abs(2.d0*decv*powpr/vk(j)) * 1.d-10
             dncount(i,j)=dncount(i,j)+1.d0
-        else
-            dd=zero
+            dq2(i,j)=dq2(i,j)+dd
         end if
-        dq1(i,j)=dq1(i,j)+dd
-    else  ! weak absorption
-        ppv2=ppv2+pchgl
-        dd = abs(2.d0*decv*powpr/vk(j)) * 1.d-10
-        dncount(i,j)=dncount(i,j)+1.d0
-        dq2(i,j)=dq2(i,j)+dd
-    end if
-
-1   continue
+    endif
+    
     dql(i,j)=dql(i,j)+dd
     pdl(j)=pdl(j)+pchgl
     pdc(j)=pdc(j)+pchgc

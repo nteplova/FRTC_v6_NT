@@ -3,14 +3,6 @@ module trajectory_module
     use trajectory_data
     implicit none
 
-    !integer, parameter :: mpnt = 100000
-
-
-    !integer nrefj(mpnt)
-    !!common/refl/nrefj(mpnt)
-
-    !integer mbeg(mpnt),mend(mpnt),mbad(mpnt)
-
     integer, parameter :: max_num_trajectories = 30000
     type(Trajectory), target ::  trajectories(max_num_trajectories)
 contains
@@ -19,22 +11,6 @@ subroutine init_trajectory
     use constants
     use driver_module
     implicit none
-    !nrefj = 0
-    
-    !dland = zero
-    !dcoll = zero
-    !perpn = zero 
-    !dalf  = zero
-    !vel = zero
-    !jrad = zero
-    !iww = zero
-    !tetai = zero
-    !xnpar = zero
-    !izz = zero
-
-    !mbeg = zero
-    !mend = zero
-    !mbad = zero
 
 end subroutine 
 

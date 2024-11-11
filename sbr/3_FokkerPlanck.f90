@@ -6,7 +6,6 @@ contains
     !! calculation of distribution functions at time t1=t+dtau !!
 subroutine fokkerplanck_compute(time, TAU)
     use FokkerPlanck1D_mod, only: FokkerPlanck1D
-    !use utils
     use rt_parameters, only: nr
     use writer_module, only: write_v_array, binary_write_array
     use maxwell, only: jindex, kindex, flag_d0
@@ -15,32 +14,19 @@ subroutine fokkerplanck_compute(time, TAU)
     implicit none
 
     type(FokkerPlanck1D) fokker_planck
-    !type(Timer) my_timer
     real(wp), intent(in) :: time, TAU
     real(wp) t, dtstep, dtau
-    !integer nr
-    !common /a0ab/ nr
     integer, parameter :: ntau = 10
-    !integer i0
-    !parameter(i0=1002)
-    !real(wp) vij,fij0,fij,dfij,dij,enorm,fst
-    !common/lh/vij(i0,100),fij0(i0,100,2),fij(i0,100,2),dfij(i0,100,2), dij(i0,100,2),enorm(100),fst(100)
     integer n,i,j,it,nt,k
     real(wp) xend,h,dt
     real(wp) znak,alfa2,dt0,h0,r
-    !common/ef/ alfa2
-    
-    !real(wp) d0
-    !integer jindex,kindex
-    !common/dddql/ d0,jindex,kindex
+
     parameter(dt0=0.1d0,h0=0.1d0)
 
     dtstep=TAU/dble(ntau) !seconds 
 
     print *, 'fokkerplanck_compute'
     write(*,*)'time=',time,' dt=',dtstep
-
-    !call my_timer%start
 
     do j=1, nr
         jindex=j  !common/dddql/ 

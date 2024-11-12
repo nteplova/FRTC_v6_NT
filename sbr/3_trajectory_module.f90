@@ -3,15 +3,18 @@ module trajectory_module
     use trajectory_data
     implicit none
 
-    integer, parameter :: max_num_trajectories = 30000
-    type(Trajectory), target ::  trajectories(max_num_trajectories)
+    !integer, parameter :: max_num_trajectories = 30000
+    !type(Trajectory), target ::  trajectories(max_num_trajectories)
+    type(Trajectory), allocatable, target ::  trajectories(:)
 contains
 
 subroutine init_trajectory
+    use rt_parameters, only: max_number_of_traj
     use constants
     use driver_module
     implicit none
-
+    if (allocated(trajectories)) deallocate(trajectories)
+    allocate(trajectories(max_number_of_traj))
 end subroutine 
 
 subroutine view(tview, ispectr,nnz,ntet) !sav2008

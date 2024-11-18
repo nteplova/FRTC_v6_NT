@@ -2,35 +2,38 @@ module nr_grid
     use kind_module
     implicit none
 
-    real(wp) :: dql(101,100)
+    integer, parameter :: MAX_NR = 100
+    !! max size of nr-grids
+
+    real(wp) :: dql(101,MAX_NR)
     !!
-    real(wp) :: pdl(100)
-    real(wp) :: pdc(100)
-    real(wp) :: pda(100)
+    real(wp) :: pdl(MAX_NR)
+    real(wp) :: pdc(MAX_NR)
+    real(wp) :: pda(MAX_NR)
     !!
-    real(wp) :: vzmin(100)
+    real(wp) :: vzmin(MAX_NR)
     !!
-    real(wp) :: vzmax(100)
+    real(wp) :: vzmax(MAX_NR)
     !common /a0i3/ dql(101,100),pdl(100),vzmin(100),vzmax(100)
-    real(wp) :: fcoll(100)
-    real(wp) :: dens(100) 
-    real(wp) :: eta(100)
+    real(wp) :: fcoll(MAX_NR)
+    real(wp) :: dens(MAX_NR) 
+    real(wp) :: eta(MAX_NR)
     !common /a0i4/ fcoll(100),dens(100),eta(100)
-    real(wp) :: dq1(101,100)
-    real(wp) :: dq2(101,100)
+    real(wp) :: dq1(101,MAX_NR)
+    real(wp) :: dq2(101,MAX_NR)
 
     real(wp) :: ppv1,ppv2
     !common/vvv1/dq1(101,100),dq2(101,100),pdc(100),pda(100),ppv1,ppv2
-    real(wp) :: pdfast(100)
+    real(wp) :: pdfast(MAX_NR)
     !common /vvv3/ pdfast(100)
-    real(wp) :: dqi0(50,100) 
+    real(wp) :: dqi0(50,MAX_NR) 
     !common /alph/ dqi0(50,100)    
-    real(wp) :: dncount(101,100)
+    real(wp) :: dncount(101,MAX_NR)
     !common/findsigma/dncount(101,100)
-    real(wp) :: pdprev1(100), pdprev2(100)
+    real(wp) :: pdprev1(MAX_NR), pdprev2(MAX_NR)
     !! массивы для невзязки
 
-    real(wp) :: source(100)
+    real(wp) :: source(MAX_NR)
     !! это относится к альфа-частицам
 contains
 

@@ -258,10 +258,8 @@ contains
         use small_vgrid, only: distr
         use decrements, only: pdec1, pdec2, pdec3, pdecv
         use decrements, only: zatukh
-        use power, only: dfind
+        use power,  only: psum4, dfind
         use plasma, only: vperp
-        use power, only: psum4
-        !use driver_module, only: pow
         use trajectory_data
         implicit none
 

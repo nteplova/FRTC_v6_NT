@@ -46,7 +46,6 @@ contains
         real(wp) :: oi
         real(wp) :: ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
-
         
         type(IterationResult) :: iteration_result
 
@@ -56,20 +55,14 @@ contains
         integer :: iww, iw0, izz
 
         plaun = spectr%input_power
-
         ispectr = spectr%direction
-        !lfree=1
-
         iw0=iw
     
         call find_volums_and_surfaces
 
         call init_nr_grid_arrays(cltn)
+        call init_iteration_vars
 
-
-        pnab=zero
-        plost=zero
-        psum4=zero
         anb=zero
         fuspow=zero
         o_da=zero
@@ -87,7 +80,6 @@ contains
         ! ------------------------------------
         iww=0
         izz=zero
-
         kzero=kv
 
         call init_trajectory
@@ -150,7 +142,8 @@ contains
 
         if(iterat.le.niterat) then
             call recalculate_f_for_a_new_mesh(ispectr, iterat)
-            call init_iteration
+            call init_iteration_vars
+            call init_nr_grid_arrays(cltn)
             goto 80
         end if
         ! ------------------------------------------
@@ -385,33 +378,13 @@ contains
         !
     end 
 
-    subroutine init_iteration
+    subroutine init_iteration_vars
         use constants, only : zero
-        use rt_parameters, only : itend0
-        use nr_grid, only: dqi0, ppv1, ppv2
-        use nr_grid, only: dql, dq1, dq2, dncount, vzmin, vzmax
-        use nr_grid, only: pdl, pdc, pda, pdfast
         use iterator_mod, only:  psum4, pnab, plost
-        use plasma, only: cltn
         implicit none
-        ppv1=zero
-        ppv2=zero
         psum4=zero
         pnab=zero
         plost=zero
-        dql=zero
-        dq1=zero
-        dq2=zero
-        dncount=zero
-        vzmin=cltn
-        vzmax=-cltn
-        pdl=zero
-        pdc=zero
-        pda=zero
-        pdfast=zero
-        if(itend0.gt.0) then
-              dqi0=zero
-        end if
     end 
 
     subroutine init_alphas

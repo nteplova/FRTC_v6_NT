@@ -27,6 +27,8 @@ module nr_grid
     !common /alph/ dqi0(50,100)    
     real(wp) :: dncount(101,100)
     !common/findsigma/dncount(101,100)
+    real(wp) :: pdprev1(100), pdprev2(100)
+    !! массивы для невзязки
 contains
 
 subroutine init_nr_grid_arrays(cltn)
@@ -41,20 +43,25 @@ subroutine init_nr_grid_arrays(cltn)
     pda=zero
     pdfast=zero
 
+    !! массивы для невзязки
+    pdprev1=zero
+    pdprev2=zero
+
     dql=zero
     dq1=zero
     dq2=zero
     dncount=zero
     vzmin=cltn
     vzmax=-cltn
+
 end subroutine
 
-function find_nevyazka(pdprev1, pdprev2) result(pchg)
+function find_nevyazka() result(pchg)
     !! find nevyazka
     use constants, only: zero
     use rt_parameters, only : nr
     implicit none
-    real(wp), intent(inout) :: pdprev1(:), pdprev2(:)
+    !real(wp), intent(inout) :: pdprev1(:), pdprev2(:)
     real(wp) :: psum1, psum2, pchg, pchg1, pchg2
     real(wp) :: dpw1, dpw2
     integer j

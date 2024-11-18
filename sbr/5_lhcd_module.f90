@@ -47,7 +47,7 @@ contains
         real(wp) :: ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
 
-        real(wp) :: pdprev1(100), pdprev2(100)
+       
         real(wp) :: source(100)
     
         type(IterationResult) :: iteration_result
@@ -89,10 +89,6 @@ contains
         ! ------------------------------------
         iww=0
         izz=zero
-        ! 
-        !! массивы для невзязки
-        pdprev1=zero
-        pdprev2=zero
 
         kzero=kv
 
@@ -120,7 +116,7 @@ contains
 
         call renormalisation_power
         
-        pchg = find_nevyazka(pdprev1, pdprev2)
+        pchg = find_nevyazka()
 
         call calculate_total_current_and_power(ol, oc, oa, of)
 

@@ -287,7 +287,7 @@ contains
         use constants, only: clt, zero
         use rt_parameters, only: itend0, kv
         use plasma, only: fvt, vperp
-        use current, only: dfind
+        use power, only: dfind
         use dispersion_module, only: ipow
         use decrements, only: vfound
         use decrements, only: cf1, cf2, cf3, cf4, cf5, cf6

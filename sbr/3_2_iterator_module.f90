@@ -13,11 +13,6 @@ module iterator_mod
     !!common/gridv/nvpt
     integer :: ipt1, ipt2, ipt
 
-    real(wp) :: psum4
-    !!common /vvv2/ psum4
-    real(wp) :: plost,pnab
-    !!common /a0a4/ plost,pnab
-
     real(wp) :: vlf,vrt,dflf,dfrt
     !common /a0ghp/ vlf,vrt,dflf,dfrt
         

@@ -23,7 +23,7 @@ contains
         use nr_grid, only: find_achieved_radial_points, renormalisation_power
 
         use iteration_result_mod
-        use iterator_mod, only: pnab, plost, psum4
+        use power, only: pnab, plost, psum4
         use iterator_mod, only: nvpt
         use iterator_mod, only: calculate_dfundv
         use iterator_mod, only: find_velocity_limits_and_initial_dfdv, recalculate_f_for_a_new_mesh
@@ -380,7 +380,7 @@ contains
 
     subroutine init_iteration_vars
         use constants, only : zero
-        use iterator_mod, only:  psum4, pnab, plost
+        use power, only:  psum4, pnab, plost
         implicit none
         psum4=zero
         pnab=zero

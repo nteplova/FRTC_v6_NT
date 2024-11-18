@@ -1,7 +1,12 @@
-module current
+module power
     use kind_module
     implicit none
 
+    real(wp) :: psum4
+    !!common /vvv2/ psum4
+    real(wp) :: plost, pnab
+    !!common /a0a4/ plost,pnab
+    
 contains
 
 subroutine refresh_vzmax_vzmin(v, i)
@@ -111,11 +116,5 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
      end if
      return
      end    
-end module current
-
-module power
-    implicit none
-    
-contains
-    
 end module power
+

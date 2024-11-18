@@ -53,6 +53,7 @@ subroutine init_nr_grid_arrays(cltn)
     dql=zero
     dq1=zero
     dq2=zero
+    dqi0=zero
     dncount=zero
     vzmin=cltn
     vzmax=-cltn

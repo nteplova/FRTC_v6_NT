@@ -27,14 +27,16 @@ contains
         use iterator_mod, only: nvpt
         use iterator_mod, only: calculate_dfundv
         use iterator_mod, only: find_velocity_limits_and_initial_dfdv, recalculate_f_for_a_new_mesh
-        use math_module, only: integral
-        use decrements, only: kzero
+        use math_module,  only: integral
+        use decrements,   only: kzero
         use source_new_mod
         
         implicit none
-        type(Spectrum) spectr
-        real*8 outpe,pe_out 
+        real*8 outpe, pe_out 
         dimension outpe(*)
+
+        type(Spectrum)        :: spectr
+        type(IterationResult) :: iteration_result
 
         integer  :: iterat
         real(wp) :: cn1, avedens
@@ -47,12 +49,10 @@ contains
         real(wp) :: ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
         
-        type(IterationResult) :: iteration_result
+        real(wp) :: plaun
 
-        real(wp)    :: plaun
-
-        integer ispectr
-        integer :: iww, iw0, izz
+        integer  :: ispectr
+        integer  :: iww, iw0, izz
 
         plaun = spectr%input_power
         ispectr = spectr%direction

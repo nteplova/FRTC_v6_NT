@@ -4,7 +4,6 @@ module current
 
 contains
 
-
 subroutine refresh_vzmax_vzmin(v, i)
     !! refresh vzmax and vzmin
     !! This needs for protect grid collapse
@@ -46,12 +45,6 @@ subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)
     real(wp) :: pchgl, pchgc, pchga, denom, powlandau, powdamped
     real(wp) :: fff, dd, domin, parn, dvz, dnpar, weight, addd
     real(wp) :: arg, hevis, adda
-     !common /a0i3/ dql(101,100),pdl(100),vzmin(100),vzmax(100)
-     !common /a0i4/ fcoll(100),dens(100),eta(100)
-     !common/vvv1/dq1(101,100),dq2(101,100),pdc(100),pda(100),ppv1,ppv2
-     !common /vvv3/ pdfast(100)
-     !common /alph/ dqi0(50,100)
-     !common/findsigma/dncount(101,100)
     real(wp),parameter :: absorption_tiny = 1.d-20
 
     if(v.gt.cltn) return

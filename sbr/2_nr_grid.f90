@@ -29,6 +29,26 @@ module nr_grid
     !common/findsigma/dncount(101,100)
 contains
 
+subroutine init_nr_grid_arrays(cltn)
+    use constants, only: zero
+    implicit none
+    real(wp), intent(in) :: cltn
+    ppv1=zero
+    ppv2=zero
+
+    pdl=zero
+    pdc=zero
+    pda=zero
+    pdfast=zero
+
+    dql=zero
+    dq1=zero
+    dq2=zero
+    dncount=zero
+    vzmin=cltn
+    vzmax=-cltn
+end subroutine
+
 function find_nevyazka(pdprev1, pdprev2) result(pchg)
     !! find nevyazka
     use constants, only: zero

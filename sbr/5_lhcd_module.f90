@@ -17,7 +17,11 @@ contains
         use trajectory_module, only: view,  init_trajectory
         use spectrum_mod
         use manager_mod
-        use nr_grid
+        use nr_grid, only: ppv1, ppv2
+        use nr_grid, only: init_nr_grid_arrays, find_nevyazka
+        use nr_grid, only: calculate_total_current_and_power
+        use nr_grid, only: find_achieved_radial_points, renormalisation_power
+
         use iteration_result_mod
         use iterator_mod, only: pnab, plost, psum4
         use iterator_mod, only: nvpt
@@ -62,8 +66,9 @@ contains
     
         call find_volums_and_surfaces
 
-        ppv1=zero
-        ppv2=zero
+        call init_nr_grid_arrays(cltn)
+
+
         pnab=zero
         plost=zero
         psum4=zero
@@ -85,21 +90,10 @@ contains
         iww=0
         izz=zero
         ! 
-        pdl=zero
-        pdc=zero
-        pda=zero
-        pdfast=zero
-
         !! массивы для невзязки
         pdprev1=zero
         pdprev2=zero
 
-        dql=zero
-        dq1=zero
-        dq2=zero
-        dncount=zero
-        vzmin=cltn
-        vzmax=-cltn
         kzero=kv
 
         call init_trajectory

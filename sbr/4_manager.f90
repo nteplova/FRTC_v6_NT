@@ -254,8 +254,8 @@ contains
         !! вычисление поглощенной мощности вдоль траектории
         use constants, only: clt, zero
         use rt_parameters, only: itend0, kv
-        use iterator_mod, only: vlf, vrt, dflf, dfrt
-        use iterator_mod, only: distr
+        use small_vgrid, only: vlf, vrt, dflf, dfrt
+        use small_vgrid, only: distr
         use decrements, only: pdec1, pdec2, pdec3, pdecv
         use decrements, only: zatukh
         use power, only: dfind

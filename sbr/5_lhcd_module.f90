@@ -24,9 +24,9 @@ contains
 
         use iteration_result_mod
         use power, only: pnab, plost, psum4
-        use iterator_mod, only: nvpt
-        use iterator_mod, only: calculate_dfundv
-        use iterator_mod, only: find_velocity_limits_and_initial_dfdv, recalculate_f_for_a_new_mesh
+        use small_vgrid, only: nvpt
+        use small_vgrid, only: calculate_dfundv
+        use small_vgrid, only: find_velocity_limits_and_initial_dfdv, recalculate_f_for_a_new_mesh
         use math_module,  only: integral
         use decrements,   only: kzero
         use source_new_mod
@@ -226,8 +226,8 @@ contains
         use driven_current_module, only : zv1, zv2
         use nr_grid, only : dql
         use maxwell, only: i0, vij, dfij, dij
-        use iterator_mod, only: ipt, ipt1
-        use iterator_mod, only: vrj, dj, vgrid
+        use small_vgrid, only: ipt, ipt1
+        use small_vgrid, only: vrj, dj, vgrid
         use lock_module, only: lock
         implicit none
         integer, intent(in) :: ispectr

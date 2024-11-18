@@ -1,4 +1,4 @@
-module iterator_mod
+module small_vgrid
     use kind_module   
     implicit none
     real(wp) :: vmid(100),vz1(100),vz2(100)
@@ -303,4 +303,4 @@ contains
 
 
     end subroutine
-end module iterator_mod
+end module small_vgrid

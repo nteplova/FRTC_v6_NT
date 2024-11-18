@@ -154,7 +154,7 @@ contains
         use constants, only : zero
         use rt_parameters, only : nr, ni1, ni2
         use plasma, only: vt0, fvt, cltn
-        use current, only: vzmin, vzmax
+        use nr_grid, only: vzmin, vzmax
         use maxwell, only: i0, vij, dfij
         use lock_module        
         implicit none
@@ -216,7 +216,7 @@ contains
         use constants, only: c0, c1, zero, zalfa, xmalfa, xlog, one_third
         use rt_parameters, only: nr, inew, ni1, ni2, itend0, kv, factor
         use plasma !, only: fn1, fn2, fvt, vt0
-        use current, only: dens, eta, fcoll
+        use nr_grid, only: dens, eta, fcoll
         implicit none
         real(wp), intent(inout) :: anb
         real(wp), intent(inout) :: source(:)

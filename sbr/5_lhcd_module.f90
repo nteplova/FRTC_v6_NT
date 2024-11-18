@@ -17,7 +17,7 @@ contains
         use trajectory_module, only: view,  init_trajectory
         use spectrum_mod
         use manager_mod
-        use current
+        use nr_grid
         use iteration_result_mod
         use iterator_mod, only: pnab, plost, psum4
         use iterator_mod, only: nvpt
@@ -196,7 +196,7 @@ contains
         use rt_parameters, only: nr, dra, factor
         use source_new_mod, only: rsou, sou, npta
         use plasma, only: fti, dn1, dn2, vk
-        use current, only: dens
+        use nr_grid, only: dens
         implicit none
         real(wp), intent(inout) :: anb
         real(wp), intent(inout) :: fuspow
@@ -244,7 +244,7 @@ contains
         use plasma, only: zefff, fn1, fn2
         use plasma, only: vt0, fvt, cltn, cnye
         use driven_current_module, only : zv1, zv2
-        use current, only : dql
+        use nr_grid, only : dql
         use maxwell, only: i0, vij, dfij, dij
         use iterator_mod, only: ipt, ipt1
         use iterator_mod, only: vrj, dj, vgrid
@@ -312,7 +312,7 @@ contains
     subroutine write_lhcd_power(time_stamp, ispectr) 
         use rt_parameters, only: nr
         use plasma, only: sk, vk
-        use current, only: pdl, pdc        
+        use nr_grid, only: pdl, pdc        
         implicit none
         real(wp), intent(in) :: time_stamp
         integer,  intent(in) :: ispectr
@@ -349,7 +349,7 @@ contains
         use constants, only: zero, one
         use rt_parameters, only: nr, ismthout
         use plasma, only: rh, rh1, nspl, vk
-        use current, only: pdl, pdc
+        use nr_grid, only: pdl, pdc
         use math_module, only: fsmoth4
         use lock_module, only: lock2, linf
         implicit none
@@ -401,9 +401,9 @@ contains
     subroutine init_iteration
         use constants, only : zero
         use rt_parameters, only : itend0
-        use current, only: dqi0, ppv1, ppv2
-        use current, only: dql, dq1, dq2, dncount, vzmin, vzmax
-        use current, only: pdl, pdc, pda, pdfast
+        use nr_grid, only: dqi0, ppv1, ppv2
+        use nr_grid, only: dql, dq1, dq2, dncount, vzmin, vzmax
+        use nr_grid, only: pdl, pdc, pda, pdfast
         use iterator_mod, only:  psum4, pnab, plost
         use plasma, only: cltn
         implicit none
@@ -432,7 +432,7 @@ contains
         use constants, only: zero
         use rt_parameters, only: nr, itend0, kv
         use plasma, only:  vperp
-        use current, only: dqi0
+        use nr_grid, only: dqi0
         implicit none
         integer :: i, j
         real(wp) :: galfa(50,100)  ! возможно массив должеб быть доступен еще где-то

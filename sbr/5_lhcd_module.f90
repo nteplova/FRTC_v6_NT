@@ -47,9 +47,7 @@ contains
         real(wp) :: ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
 
-       
-        real(wp) :: source(100)
-    
+        
         type(IterationResult) :: iteration_result
 
         real(wp)    :: plaun
@@ -76,12 +74,12 @@ contains
         fuspow=zero
         o_da=zero
         
-        call find_velocity_limits_and_initial_dfdv(anb, source)
+        call find_velocity_limits_and_initial_dfdv(anb)
         call calculate_dfundv(ispectr)
 
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if(itend0.gt.0) then  ! begin alpha-source renormalisation
-            call alpha_source_renormalisation(anb, fuspow, source)
+            call alpha_source_renormalisation(anb, fuspow)
         end if
 
         ! ------------------------------------
@@ -181,16 +179,15 @@ contains
         
     end    
     
-    subroutine alpha_source_renormalisation(anb, fuspow, source)
+    subroutine alpha_source_renormalisation(anb, fuspow)
         use constants, only: zero, talfa, one_third
         use rt_parameters, only: nr, dra, factor
         use source_new_mod, only: rsou, sou, npta
         use plasma, only: fti, dn1, dn2, vk
-        use nr_grid, only: dens
+        use nr_grid, only: dens, source
         implicit none
         real(wp), intent(inout) :: anb
         real(wp), intent(inout) :: fuspow
-        real(wp), intent(inout) :: source(:)
         real(wp) :: r, hr, tt
         real(wp) :: anb0, aratio, sssour
         real(wp) :: ddens, tdens

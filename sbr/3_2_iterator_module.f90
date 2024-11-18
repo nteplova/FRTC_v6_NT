@@ -212,14 +212,14 @@ contains
         deallocate(vvj,vdfj)
     end subroutine    
 
-    subroutine find_velocity_limits_and_initial_dfdv(anb, source)
+    subroutine find_velocity_limits_and_initial_dfdv(anb)
         use constants, only: c0, c1, zero, zalfa, xmalfa, xlog, one_third
         use rt_parameters, only: nr, inew, ni1, ni2, itend0, kv, factor
         use plasma !, only: fn1, fn2, fvt, vt0
         use nr_grid, only: dens, eta, fcoll
+        use nr_grid, only: source !! нужна ли она тут вообще???
         implicit none
         real(wp), intent(inout) :: anb
-        real(wp), intent(inout) :: source(:)
         integer  :: i, j, k
         real(wp) :: v, vt, vto, wpq, whe
         real(wp) :: u, u1, e1, e2, e3, tmp

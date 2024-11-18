@@ -29,6 +29,9 @@ module nr_grid
     !common/findsigma/dncount(101,100)
     real(wp) :: pdprev1(100), pdprev2(100)
     !! массивы для невзязки
+
+    real(wp) :: source(100)
+    !! это относится к альфа-частицам
 contains
 
 subroutine init_nr_grid_arrays(cltn)

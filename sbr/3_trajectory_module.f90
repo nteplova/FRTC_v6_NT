@@ -17,7 +17,7 @@ subroutine init_trajectory
     allocate(trajectories(max_number_of_traj))
 end subroutine 
 
-subroutine view(tview, ispectr,nnz,ntet) !sav2008
+subroutine write_trajectories(tview, ispectr,nnz,ntet) !sav2008
 !!!writing trajectories into a file
     use constants
     use approximation

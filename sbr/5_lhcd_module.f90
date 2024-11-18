@@ -14,7 +14,7 @@ contains
         use plasma, only: find_volums_and_surfaces
         use rt_parameters, only: pabs0, ipri, niterat
         use rt_parameters, only: nr, kv, ntet, iw, pgiter, itend0
-        use trajectory_module, only: view,  init_trajectory
+        use trajectory_module, only: write_trajectories,  init_trajectory
         use spectrum_mod
         use manager_mod
         use nr_grid, only: ppv1, ppv2
@@ -162,7 +162,7 @@ contains
 
         call calculate_diffusion(ispectr)
 
-        call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
+        call write_trajectories(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
 
         call write_lhcd_power(tcur, ispectr) 
 

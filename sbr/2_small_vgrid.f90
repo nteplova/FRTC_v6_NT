@@ -1,5 +1,6 @@
 module small_vgrid
     use kind_module   
+    use nr_grid, only: MAX_NR
     implicit none
     real(wp) :: vmid(100),vz1(100),vz2(100)
     !integer  :: ibeg(100),iend(100)
@@ -7,7 +8,7 @@ module small_vgrid
     real(wp) :: vrj(101),dj(101),djnew(1001)
     real(wp) :: dj2(101),d2j(101)
 
-    real(wp) :: vgrid(101,100), dfundv(101,100)
+    real(wp) :: vgrid(101,MAX_NR), dfundv(101,MAX_NR)
     !!common/gridv/vgrid(101,100),dfundv(101,100)
     integer  :: nvpt
     !!common/gridv/nvpt

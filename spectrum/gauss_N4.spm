@@ -10,6 +10,6 @@
     "sigma": 0.05,
     "coordinate_system": 1,
     "angle": 0.0,
-    "PWM": false
+    "PWM": true
   }
 }

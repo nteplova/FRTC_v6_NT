@@ -9,7 +9,7 @@ subroutine fokkerplanck_compute(time, TAU)
     use rt_parameters, only: nr
     use writer_module, only: write_v_array, binary_write_array
     use maxwell, only: jindex, kindex, flag_d0
-    use maxwell, only: vij, fij, fij0, dij
+    use maxwell, only: vij, fij, fij0, dij, dfij
     use plasma, only : fvt, enorm, fst
     implicit none
 
@@ -58,13 +58,15 @@ subroutine fokkerplanck_compute(time, TAU)
                 !call fokkerplanck1D_iter(alfa2, h, n, dt, nt, xend, d1, d2, d3, vij(:,j), fij(:,j,k),out_fj, dfij(:,j,k))
             end do
             fij(:,j,k) = fokker_planck%f
+            call fokker_planck%eval_f_derivate(dfij(:,j,k))
         end do
     end do
 
     write(*,*)'fokkerplanck nr= ',nr,' ntau =',ntau, 'nt =', nt
 
     call binary_write_array(vij, fij0(:,1:nr,:), time, 'maxwell_fij0')
-    call write_v_array(vij, fij(:,1:nr,:), time, 'maxwell')
+    call write_v_array(vij, fij(:,1:nr,:),  time, 'maxwell')
+    call write_v_array(vij, dfij(:,1:nr,:), time, 'f_derivative')
     call write_v_array(vij,  dij(:,1:nr,:), time, 'diffusion')
     !call write_matrix(dij(1:i0,1:nr,1), time, 'diffusion')
     !time2 = sys_time() - time1

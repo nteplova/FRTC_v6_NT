@@ -226,7 +226,7 @@ contains
         use driven_current_module, only : zv1, zv2
         use nr_grid, only : dql
         use maxwell, only: i0, vij, dfij, dij
-        use small_vgrid, only: ipt, ipt1
+        use small_vgrid, only: ipt, ipt1, MAX_PT
         use small_vgrid, only: vrj, dj, vgrid
         use lock_module, only: lock
         implicit none
@@ -237,7 +237,7 @@ contains
         real(wp) :: vt, vto, vmax, zff, cnyfoc
         real(wp) :: pn, fnr, fnrr
         real(wp) :: dconst, ddout
-        real(wp) :: dijk(101,100,2), vrjnew(101,100,2)
+        real(wp) :: dijk(MAX_PT,100,2), vrjnew(MAX_PT,100,2)
         !встречает только один раз common/t01/dijk(101,100,2), vrjnew(101,100,2)
         !
         hr = 1.d0/dble(nr+1)

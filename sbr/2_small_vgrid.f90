@@ -2,13 +2,14 @@ module small_vgrid
     use kind_module   
     use nr_grid, only: MAX_NR
     implicit none
-    real(wp) :: vmid(100),vz1(100),vz2(100)
+    integer, parameter :: MAX_PT= 1000 ! размер температурной сетки
+    real(wp) :: vmid(MAX_PT),vz1(MAX_PT),vz2(MAX_PT)
     !integer  :: ibeg(100),iend(100)
 
-    real(wp) :: vrj(101),dj(101),djnew(1001)
-    real(wp) :: dj2(101),d2j(101)
+    real(wp) :: vrj(MAX_PT),dj(MAX_PT),djnew(MAX_PT)
+    real(wp) :: dj2(MAX_PT),d2j(MAX_PT)
 
-    real(wp) :: vgrid(101,MAX_NR), dfundv(101,MAX_NR)
+    real(wp) :: vgrid(MAX_PT,MAX_NR), dfundv(MAX_PT,MAX_NR)
     !!common/gridv/vgrid(101,100),dfundv(101,100)
     integer  :: nvpt
     !!common/gridv/nvpt
@@ -232,8 +233,8 @@ contains
         ipt1=kpt1+1
         ipt2=ni1+ni2
         ipt=ipt1+ni1+ni2+kpt3
-        if(ipt.gt.101) then
-            write(*,*)'ipt >101'
+        if(ipt.gt.MAX_PT) then
+            write(*,*)'ipt >MAX_PT'
             pause'stop program'
             stop
         end if

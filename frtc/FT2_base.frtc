@@ -51,7 +51,7 @@
     "inew": -1,
     "itor": 1,
     "ipol": 1,
-    "upl_fix": false,
+    "upl_fix": true,
     "upl_value": 0.0,
     "fp_solver": 0,
     "traj_len_seved": 50,

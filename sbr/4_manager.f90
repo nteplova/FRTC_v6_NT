@@ -11,7 +11,7 @@ contains
         use rt_parameters, only : nr, ipri, iw, nmaxm, pabs0, eps, eps_const            
         use trajectory_module
         use spectrum_mod
-        use iterator_mod,only: plost, pnab
+        use power, only: plost, pnab
         use dispersion_module, only: icall1, icall2, yn3, ivar, izn, znakstart
         use driver_module, only: irs, iabsorp
         use trajectory_data
@@ -254,14 +254,12 @@ contains
         !! вычисление поглощенной мощности вдоль траектории
         use constants, only: clt, zero
         use rt_parameters, only: itend0, kv
-        use iterator_mod, only: vlf, vrt, dflf, dfrt
-        use iterator_mod, only: distr
+        use small_vgrid, only: vlf, vrt, dflf, dfrt
+        use small_vgrid, only: distr
         use decrements, only: pdec1, pdec2, pdec3, pdecv
         use decrements, only: zatukh
-        use current, only: dfind
+        use power,  only: psum4, dfind
         use plasma, only: vperp
-        use iterator_mod, only: psum4
-        !use driver_module, only: pow
         use trajectory_data
         implicit none
 

@@ -305,7 +305,7 @@ contains
         use metrics
         use dielectric_tensor
         use dispersion_equation, only : as, bs, yny, ynz, ynzq
-        use iterator_mod, only: distr
+        use small_vgrid, only: distr
         use source_new_mod, only: source_new
         implicit none
         real(wp), intent(in) :: pa, yn2, ptet, yn3, ynpopq, xnr

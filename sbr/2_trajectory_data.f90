@@ -15,7 +15,7 @@ module trajectory_data
         integer     :: ipow
     end type TrajectoryPoint
 
-    integer, parameter :: max_size = 50000
+    !integer, parameter :: max_size = 50000
 
     type Trajectory
         integer size
@@ -57,6 +57,7 @@ module trajectory_data
 contains
     subroutine init_method(this, theta, index)
         !! инициализация траетории
+        use rt_parameters, only: max_size_of_traj
         implicit none
         class(Trajectory), intent(inout) :: this
         real(wp),          intent(in)    :: theta
@@ -68,7 +69,7 @@ contains
         this%size = 0
         this%nrefj = 0
         this%mbad = 0 
-        allocate(this%points(max_size))
+        allocate(this%points(max_size_of_traj))
     end subroutine
 
     subroutine reset_method(this, index)
@@ -81,12 +82,15 @@ contains
 
     subroutine add_point_method(this, tpoint)
         !! добавляение новой точнки траектории
+        use rt_parameters, only: max_size_of_traj
         implicit none
         class(Trajectory), intent(inout) :: this
         class(TrajectoryPoint), intent(in) :: tpoint  
         this%size = this%size + 1
-        if (this%size > max_size) then
-            print *, 'слишком много точек'
+        if (this%size > max_size_of_traj) then
+            print *, 'size of traj=', this%size
+            print *, 'too long trajectory !'
+            print *, 'need to increase max_size_of_traj'
             stop
         end if
         this%points(this%size) = tpoint

@@ -1,4 +1,4 @@
-    subroutine drivencurrent95(outj, sigmaj, UPL, NRD, NA1, TIME, TAU, ROC, RTOR, GP2)
+    subroutine driven_current(outj, sigmaj, UPL, NRD, NA1, TIME, TAU, ROC, RTOR, GP2)
         !! ******************************************************************
         !!   outj(i)  = LH driven current density, MA/m^2
         !!   dndt(i)  = d^2Jr1/dt^2/E, MA/m^2/sec^2/(V/m), ~runaway d(el.density)/dt/E

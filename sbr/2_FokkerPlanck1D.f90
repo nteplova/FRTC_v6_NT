@@ -1,6 +1,6 @@
 module FokkerPlanck1D_mod ! the module name defines the namespace
     !! модуль содержит функции для решения одномерного уравнения Фоккер-Планка
-    use, intrinsic :: iso_fortran_env, only: sp=>real32, dp=>real64
+    use kind_module
     use savelyev_solver_module
     use chang_cooper_module
     implicit none
@@ -8,29 +8,30 @@ module FokkerPlanck1D_mod ! the module name defines the namespace
         !! solver of FP eq
         !integer          :: direction = 0
         !- direction
-        real(dp)         :: enorm = 0
+        real(wp)         :: enorm = 0
         !! электрическое поле
-        real(dp)         :: v_lim = 0
+        real(wp)         :: v_lim = 0
         !! верхняя граница скорости электронов
-        real(dp), allocatable         :: v(:)
+        real(wp), allocatable         :: v(:)
         !! сетка скоростей
-        real(dp), allocatable         :: f(:)
+        real(wp), allocatable         :: f(:)
         !! распределение
         integer         :: i0 = 0 
         !! size of distribution grid
-        real(dp)        :: alfa2  = 0 
+        real(wp)        :: alfa2  = 0 
         !! поле со знаком
         integer         :: n = 0 
         !! size of local grid        
-        real(dp)        :: h  = 0 
+        real(wp)        :: h  = 0 
         !! step of local grid 
-        real(dp), allocatable ::  d1(:), d2(:), d3(:)
+        real(wp), allocatable ::  d1(:), d2(:), d3(:)
         !! диффузия
     contains
         procedure :: print => FokkerPlanck1D_print
         procedure :: solve_time_step => FokkerPlanck1D_solve_time_step
         procedure :: init_zero_diffusion => FokkerPlanck1D_init_zero_diffusion
         procedure :: init_diffusion => FokkerPlanck1D_init_diffusion
+        procedure :: eval_f_derivate => FokkerPlanck1D_eval_f_derivate
     end type FokkerPlanck1D   
 
     interface FokkerPlanck1D
@@ -43,10 +44,10 @@ module FokkerPlanck1D_mod ! the module name defines the namespace
         !! конструктор для FokkerPlanck1D
         implicit none
         type(FokkerPlanck1D) :: this
-        real(dp), value :: e, v_lim, v(:), f(:)
+        real(wp), value :: e, v_lim, v(:), f(:)
         integer  :: n
-        real(dp) :: h
-        real(dp), parameter :: h0 = 0.1d0
+        real(wp) :: h
+        real(wp), parameter :: h0 = 0.01d0
         !this%inst_field1 = cmplx(0.,0.) 
         this%enorm     = abs(e)
         this%v_lim = v_lim
@@ -88,9 +89,9 @@ module FokkerPlanck1D_mod ! the module name defines the namespace
         implicit none
         class(FokkerPlanck1D), intent(inout) :: this
         integer :: n
-        real(dp), dimension(:), intent(in) ::  dif
-        real(dp), dimension(:), allocatable :: xx
-        real(dp) h
+        real(wp), dimension(:), intent(in) ::  dif
+        real(wp), dimension(:), allocatable :: xx
+        real(wp) h
         integer :: i0
         integer i, klo, khi, ierr, klo1, khi1
         integer klo2, klo3, khi2, khi3, ierr1, ierr2, ierr3
@@ -138,6 +139,42 @@ module FokkerPlanck1D_mod ! the module name defines the namespace
         end do
       end subroutine FokkerPlanck1D_init_diffusion
 
+
+
+    subroutine FokkerPlanck1D_eval_f_derivate(this, df)
+        use lock_module
+        implicit none
+        class(FokkerPlanck1D), intent(inout)   :: this
+        real(wp), dimension(:), intent (inout) :: df
+        integer  :: i
+        real(wp) :: dv
+
+        dv = this%v(2)
+
+        do i=1, this%i0
+
+            if(i.eq.1) then
+             df(i)=(this%f(i+1)-this%f(i))/dv
+            else if(i.eq.this%i0) then
+             df(i)=(this%f(i)-this%f(i-1))/dv
+            else
+             df(i)=0.5d0*(this%f(i+1)-this%f(i-1))/dv
+            end if
+
+            if(df(i).gt.0) then
+                print *, 'df>0'
+                !write(*,*)'df>0: i,j,k=',i,j,k
+                !open(333,file='test/derivs.dat')
+                !write(333,*) 'dfij(i,j,k),i,j,k=',df(i,j,k),i,j,k
+                !df(i)=0
+                pause
+            end if
+
+        end do
+           
+
+    end subroutine
+
     subroutine FokkerPlanck1D_solve_time_step(this, dt, nt)
         use lock_module
         use rt_parameters, only: fp_solver
@@ -145,16 +182,16 @@ module FokkerPlanck1D_mod ! the module name defines the namespace
         class(FokkerPlanck1D), intent(inout) :: this
         
         integer, intent(in) :: nt
-        real(dp), intent(in)  :: dt
+        real(wp), intent(in)  :: dt
 
 
         !real*8, intent (inout), optional :: dfj0(:)
 
-        real(dp), parameter :: zero=0.d0
-        real(dp)  y(this%n+2),x(this%n+2)
-        real(dp), dimension(:), allocatable:: fj, dfj,  givi
+        real(wp), parameter :: zero=0.d0
+        real(wp)  y(this%n+2),x(this%n+2)
+        real(wp), dimension(:), allocatable:: fj, dfj,  givi
         integer i, ii, it, ibeg, klo, khi, ierr, klo1, khi1
-        real(dp) shift, ybeg, yend, tend, dff
+        real(wp) shift, ybeg, yend, tend, dff
 
          !!!!!! grid !!!!!!!!!
         !!  shift=h*0.1d0 !0.01d0

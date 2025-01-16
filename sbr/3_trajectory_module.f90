@@ -3,42 +3,21 @@ module trajectory_module
     use trajectory_data
     implicit none
 
-    !integer, parameter :: mpnt = 100000
-
-
-    !integer nrefj(mpnt)
-    !!common/refl/nrefj(mpnt)
-
-    !integer mbeg(mpnt),mend(mpnt),mbad(mpnt)
-
-    integer, parameter :: max_num_trajectories = 30000
-    type(Trajectory), target ::  trajectories(max_num_trajectories)
+    !integer, parameter :: max_num_trajectories = 30000
+    !type(Trajectory), target ::  trajectories(max_num_trajectories)
+    type(Trajectory), allocatable, target ::  trajectories(:)
 contains
 
 subroutine init_trajectory
+    use rt_parameters, only: max_number_of_traj
     use constants
     use driver_module
     implicit none
-    !nrefj = 0
-    
-    !dland = zero
-    !dcoll = zero
-    !perpn = zero 
-    !dalf  = zero
-    !vel = zero
-    !jrad = zero
-    !iww = zero
-    !tetai = zero
-    !xnpar = zero
-    !izz = zero
-
-    !mbeg = zero
-    !mend = zero
-    !mbad = zero
-
+    if (allocated(trajectories)) deallocate(trajectories)
+    allocate(trajectories(max_number_of_traj))
 end subroutine 
 
-subroutine view(tview, ispectr,nnz,ntet) !sav2008
+subroutine write_trajectories(tview, ispectr,nnz,ntet) !sav2008
 !!!writing trajectories into a file
     use constants
     use approximation
@@ -46,7 +25,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
     use decrements, only: pdec1,pdec2,pdec3,pdecv,pdecal,dfdv
     use decrements, only: zatukh
     use rt_parameters, only :  nr, itend0, kv, nmaxm, traj_len_seved
-    use iterator_mod, only : dflf, dfrt, distr
+    use small_vgrid, only : dflf, dfrt, distr
     use driver_module !, only: jrad, iww, izz, length
     use trajectory_data
     implicit none

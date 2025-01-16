@@ -58,7 +58,7 @@ subroutine fokkerplanck_compute(time, TAU)
                 !call fokkerplanck1D_iter(alfa2, h, n, dt, nt, xend, d1, d2, d3, vij(:,j), fij(:,j,k),out_fj, dfij(:,j,k))
             end do
             fij(:,j,k) = fokker_planck%f
-            call fokker_planck%eval_f_derivate(dfij(:,j,k))
+            !call fokker_planck%eval_f_derivate(dfij(:,j,k))
         end do
     end do
 

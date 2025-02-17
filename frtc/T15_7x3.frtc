@@ -27,13 +27,13 @@
     "hdrob": 1.5,
     "cleft": 0.7,
     "cright": 1.5,
-    "cdel": 0.0,
+    "cdel": 0.5,
     "rbord": 0.999,
     "pchm": 0.2,
     "pabs": 0.01,
     "pgiter": 0.00001,
-    "ni1": 20,
-    "ni2": 20,
+    "ni1": 10,
+    "ni2": 10,
     "niterat": 199,
     "nmaxm_1": 500,
     "nmaxm_2": 50,
@@ -61,7 +61,7 @@
   "grill_parameters": {
     "Zplus": 34.29,
     "Zminus": -34.29,
-    "ntet": 21,
+    "ntet": 35,
     "nnz": 51
   }
 }

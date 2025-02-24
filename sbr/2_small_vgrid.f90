@@ -149,7 +149,7 @@ contains
     subroutine recalculate_f_for_a_new_mesh(ispectr, iterat)
         !!   recalculate f' for a new mesh
         use constants, only : zero
-        use rt_parameters, only : nr, ni1, ni2
+        use rt_parameters, only : nr, ni1, ni2, cdel
         use plasma, only: vt0, fvt, cltn
         use nr_grid, only: vzmin, vzmax
         use maxwell, only: i0, vij, dfij
@@ -158,7 +158,7 @@ contains
         integer, intent(in) :: ispectr, iterat
         
         integer i, j, k
-        real(wp) :: cdel, dfout
+        real(wp) :: dfout
         real(wp), dimension(:), allocatable:: vvj, vdfj
         integer :: klo,khi,ierr
         real(wp) :: r, hr, vt, vto, vmax

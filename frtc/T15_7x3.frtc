@@ -27,13 +27,13 @@
     "hdrob": 1.5,
     "cleft": 0.7,
     "cright": 1.5,
-    "cdel": 0.25,
+    "cdel": 0.5,
     "rbord": 0.999,
     "pchm": 0.2,
     "pabs": 0.01,
     "pgiter": 0.00001,
-    "ni1": 20,
-    "ni2": 20,
+    "ni1": 10,
+    "ni2": 10,
     "niterat": 199,
     "nmaxm_1": 500,
     "nmaxm_2": 50,
@@ -54,9 +54,9 @@
     "upl_fix": true,
     "upl_value": 0.0,
     "fp_solver": 0,
-    "traj_len_seved": -1,
+    "traj_len_seved": 100,
     "max_number_of_traj": 30000,
-    "max_size_of_traj": 3000
+    "max_size_of_traj": 9000
   },
   "grill_parameters": {
     "Zplus": 34.29,

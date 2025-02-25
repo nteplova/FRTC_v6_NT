@@ -54,9 +54,9 @@
     "upl_fix": true,
     "upl_value": 0.0,
     "fp_solver": 0,
-    "traj_len_seved": -1,
+    "traj_len_seved": 100,
     "max_number_of_traj": 30000,
-    "max_size_of_traj": 3000
+    "max_size_of_traj": 9000
   },
   "grill_parameters": {
     "Zplus": 34.29,

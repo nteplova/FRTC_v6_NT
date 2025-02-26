@@ -18,22 +18,8 @@ subroutine refresh_vzmax_vzmin(v, i)
     implicit none
     real(wp), intent(in) :: v
     integer,  intent(in) :: i
-    if (v.lt.vzmin(i)) then 
-        if (v.gt.cltn/3) then
-            vzmin(i)=v
-        else
-            vzmin(i)=cltn/3
-        endif
-    endif
-    if (v.gt.vzmax(i)) then
-        vzmax(i)=v
-        if (v.gt.cltn*2/3) then
-            vzmax(i)=cltn*2/3
-        else
-            vzmax(i)=v
-        endif
-        !print *, 'vzmin =', vzmin(i), 'i=', i
-    endif
+    if(v.lt.vzmin(i)) vzmin(i)=v
+    if(v.gt.vzmax(i)) vzmax(i)=v
 end subroutine
 
 subroutine dfind(j, i, v, powpr, pil,pic,pia,df,decv,refr,vlf,vrt,ifast)

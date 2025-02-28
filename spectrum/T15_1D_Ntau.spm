@@ -1,0 +1,11 @@
+{
+  "name": "T15_1D_Ntau",
+  "comment": "Ntau 7x3 Irzak",
+  "spectrum": {
+    "kind": "spectrum_1D",
+    "source": "spcpNtau.dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": false
+  }
+}

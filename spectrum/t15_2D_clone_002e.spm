@@ -1,0 +1,11 @@
+{
+  "name": "t15_2D_clone_002e",
+  "comment": "t15pam4rbox_2D_correct.dat",
+  "spectrum": {
+    "kind": "scatter_spectrum",
+    "source": "t15pam4rbox_2D_correct.dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": true
+  }
+}

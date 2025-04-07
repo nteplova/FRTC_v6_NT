@@ -11,9 +11,8 @@
       "title": "профили токов",
       "y_label": "Value [arb. unit]",
       "data": [
-        "J",
-        "Jlh",
-        "Johm"
+        "Johm",
+        "Jlh"
       ]
     },
     {

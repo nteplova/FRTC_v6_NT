@@ -50,20 +50,7 @@ contains
         end if
 
         if(iterat.eq.0) then
-            !-----------------------------------------
-            !    find initial radius for a trajectory
-            !    on the 1th iteration
-            !-----------------------------------------
-            do itet = 1,ntet
-                tetin = tet1+htet*(itet-1)
-                do inz = 1, spectr%size
-                    itr = itr+1
-                    current_trajectory => trajectories(itr)
-                    point = spectr%data(inz)
-                    call current_trajectory%init(tetin, inz)
-                    call rini(current_trajectory, point, iw0)
-                enddo
-            enddo
+
         endif
 
         ibad = 0
@@ -158,93 +145,6 @@ contains
 1005    format(1x,i5)
 1006    format (e14.7)
     end    
-
-
-    !real(wp) function rini(xm, tet, point, ifail) !sav2009
-    subroutine rini(traj, point, iw0)
-        !! вычисление начальной точки входа луча
-        use constants, only : zero
-        use rt_parameters, only : inew, nr, iw, spectrum_coordinate_system
-        use spectrum_mod, only : SpectrumPoint
-        use decrements, only : dhdnr 
-        use dispersion_module, only: ivar, yn3, izn, znakstart
-        use dispersion_module, only: find_all_roots, dhdomega
-        use metrics, only: g22, g33, co, si
-        use metrics, only: calculate_metrics
-        use driver_module, only: irs
-        use trajectory_data
-        implicit none
-        
-        class(Trajectory), intent(inout) :: traj
-        type(SpectrumPoint), intent(in)  :: point
-        integer, intent(in)              :: iw0
-        real(wp)  :: xm
-        real(wp)  :: tet 
-
-        integer :: ntry
-        real(wp) :: pa, prt, prm, hr 
-
-        real(wp),  parameter :: rhostart=1.d0
-        integer,   parameter :: ntry_max=5
-        integer :: num_roots
-        real(wp) :: xnr_root(4)
-        real(wp) :: znak
-        irs = 1
-        iw = iw0
-        izn = 1
-        hr = 1.d0/dble(nr+1)
-        tet = traj%tetin
-
-        ntry = 0
-        pa = rhostart
-        do while (ntry.lt.ntry_max.and.pa.ge.2d0*hr)
-            pa = rhostart-hr*dble(ntry)-1.d-4
-            ntry = ntry+1
-
-            ! вычисление g22 и g33
-            call calculate_metrics(pa, tet)
-
-            select case(spectrum_coordinate_system)
-            case(0) ! toroidal coordinates
-                yn3 = point%Ntor*dsqrt(g33)
-                xm  = point%Npol*dsqrt(g22)
-            case(1) ! magnetic coordinates
-                yn3 = point%Ntor*dsqrt(g33)/co 
-                xm  = point%Npol*dsqrt(g22)/si
-            case DEFAULT
-                print *, 'bad spectrum coordinate system'
-                stop
-            end select  
-
-            num_roots = find_all_roots(pa,xm,tet,xnr_root)
-             
-            if (num_roots>0) then
-                ! определение znakstart
-                znak = dhdomega(pa,tet,xnr_root(1),xm)
-                izn = 1
-                if(-znak*dhdnr.gt.zero) then
-                    izn=-1
-                    znak = dhdomega(pa,tet,xnr_root(2),xm)
-                    if(-znak*dhdnr.gt.zero) then
-                        write(*,*)'Exception: both modes go outward !!'
-                        stop
-                    end if
-                endif
-                traj%rin = pa
-                traj%tetzap = tet
-                traj%xmzap = xm
-                traj%rzap = pa
-                traj%yn3zap = yn3 
-                traj%irszap = irs 
-                traj%iwzap = iw
-                traj%iznzap = izn
-                traj%znakstart = znak ! оказалось,что нужно запоминать. znakstart используется в ext4
-                return
-            end if
-        end do
-        print *, 'error: no roots'
-        traj%mbad = 1 ! плохоая траектория
-    end      
 
     subroutine dqliter(dltpow, traj, h, powexit, iout) !sav2008
         !! вычисление поглощенной мощности вдоль траектории

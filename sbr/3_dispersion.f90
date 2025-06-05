@@ -1037,7 +1037,6 @@ contains
         real(wp) :: source
         real(wp) :: aimh
         !common /bcef/ ynz,ynpopq
-        !common /aef2/ icall1,icall2
 
         !integer :: irefl, iconv
         !common /cefn/ iconv,irefl
@@ -1060,8 +1059,7 @@ contains
         !sav2008       return
         !sav2008      end if
   
-        icall2=icall2+1
-        !!      pn=fn1(pa,fnr)
+          !!      pn=fn1(pa,fnr)
         !!      pn=fn2(pa,fnr,fnrr)
         if(inew.eq.0) then !vardens
          pn=fn1(pa,fnr)

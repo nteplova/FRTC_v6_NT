@@ -49,7 +49,7 @@ subroutine write_trajectories(tview, ispectr,nnz,ntet) !sav2008
     integer, parameter :: m=7
     real(wp), parameter :: pleft=1.d-10 !m may be chaged together with name(m)
 
-    real(wp) :: htet, h, xr, xdl, xdlp, xly, xlyp, xgm, xgmp, th
+    real(wp) :: h, xr, xdl, xdlp, xly, xlyp, xgm, xgmp, th
     real(wp) :: x, xx, z, zz, pl, pc, pa
     real(wp) :: pdec1z, pdec3z, pintld, pintal
     real(wp) :: cotet, sitet
@@ -82,11 +82,7 @@ subroutine write_trajectories(tview, ispectr,nnz,ntet) !sav2008
         return
     endif
 
-
-    htet=zero
     h=1d0/dble(nr+1)
-    if(ntet.ne.1) htet=(tet2-tet1)/(ntet-1)
-
 
     open(1,file=fname)
 

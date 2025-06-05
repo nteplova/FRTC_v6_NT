@@ -22,7 +22,7 @@ contains
         real(wp) pow
         integer ntet, iout, itr,  nnj,  n_it
         integer maxref, iterat, nmax0, ibad, itet
-        integer nbad1, nbad2, inz
+        integer inz
         integer iw0, ifail, iabsirp, inak0,ib,ie
         integer nmax, i, nb1,nb2
         real(wp) htet, hr, rin, xmin!, rstart
@@ -72,8 +72,6 @@ contains
         ! begin outer loop on teta
         !--------------------------------------
         do itet = 1,ntet
-            nbad1 = 0
-            nbad2 = 0
             icall1 = 0
             icall2 = 0
             tetin = tet1+htet*(itet-1)
@@ -109,8 +107,8 @@ contains
                 !-------------------------------------
                 call tracing(current_trajectory, nmax, nb1, nb2, pow, pabs)
                 eps = eps_const 
-                nbad1 = nbad1+nb1
-                nbad2 = nbad2+nb2
+                !nbad1 = nbad1+nb1
+                !nbad2 = nbad2+nb2
                 current_trajectory%nrefj = current_trajectory%nrefj + nmax
                 powexit = pow
                 if (iabsorp.lt.0) then
@@ -153,7 +151,7 @@ contains
                 pnab = pnab+powexit
 31              continue
             end do
-            if(ipri.gt.1) write(*,1003)itet,icall1,icall2,current_trajectory%nrefj,nbad1,nbad2
+            !if(ipri.gt.1) write(*,1003)itet,icall1,icall2,current_trajectory%nrefj,nbad1,nbad2
         end do
 1001    format (30x,i4,' iteration')
 1002    format (6x,'n',5x,'call2',6x,'call4',6x,'nrefl',4x,'last',5x,'bad2',5x,'bad4')

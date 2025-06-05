@@ -12,7 +12,7 @@ contains
         use trajectory_module
         use spectrum_mod
         use power, only: plost, pnab
-        use dispersion_module, only: icall1, icall2, yn3, ivar, izn, znakstart
+        use dispersion_module, only: yn3, ivar, izn, znakstart
         use driver_module, only: irs, iabsorp
         use trajectory_data
         implicit none
@@ -72,8 +72,6 @@ contains
         ! begin outer loop on teta
         !--------------------------------------
         do itet = 1,ntet
-            icall1 = 0
-            icall2 = 0
             tetin = tet1+htet*(itet-1)
             !--------------------------------------
             ! begin inner loop on nz

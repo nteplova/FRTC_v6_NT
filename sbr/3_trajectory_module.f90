@@ -97,7 +97,7 @@ contains
     end      
 
 
-subroutine init_trajectory(iw0, spectr)
+subroutine init_trajectories(iw0, spectr)
     use constants
     use rt_parameters, only: max_number_of_traj
     use rt_parameters, only: nr, kv, ntet

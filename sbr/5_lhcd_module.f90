@@ -82,7 +82,7 @@ contains
         izz=zero
         kzero=kv
 
-        call init_trajectory(iw0, spectr)
+        call init_trajectories(iw0, spectr)
         call init_alphas
         
         ! ----------------------------------------------------------------------

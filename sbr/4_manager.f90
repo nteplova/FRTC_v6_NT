@@ -21,13 +21,13 @@ contains
         real(wp) pabs
         real(wp) pow
         integer ntet, iout, itr,  nnj,  n_it
-        integer maxref, iterat, nmax0, ibad, itet
-        integer inz
+        integer maxref, iterat, nmax0, ibad
+        !integer inz, itet
         integer iw0, ifail, iabsirp, inak0,ib,ie
         integer nmax, i, nb1,nb2
         real(wp) htet, hr, rin, xmin!, rstart
         real(wp) powexit, dltpow,  pow1, pgamma !, xm
-        real(wp) tetin0, tetin!, tet
+        real(wp) tetin0
 
         pabs = spectr%max_power*pabs0/1.d2
         print *, 'pabs =', pabs, spectr%max_power, pabs0
@@ -49,25 +49,21 @@ contains
             write(*,1002)
         end if
 
-        if(iterat.eq.0) then
-
-        endif
-
         ibad = 0
         itr = 0 
         !--------------------------------------
         ! begin outer loop on teta
         !--------------------------------------
-        do itet = 1,ntet
-            tetin = tet1+htet*(itet-1)
-            !--------------------------------------
+        !do itet = 1,ntet
+             !--------------------------------------
             ! begin inner loop on nz
             !--------------------------------------
-            do inz = 1, spectr%size
-                itr = itr+1
+        !    do inz = 1, spectr%size
+        do itr=1, number_of_trajectories
+        !        itr = itr+1
                 current_trajectory => trajectories(itr)
                 znakstart = current_trajectory%znakstart !  znakstart используется в ext4 
-                point = spectr%data(inz)
+                point = spectr%data(current_trajectory%spectrum_point_index)
 
                 if (current_trajectory%mbad.ne.0) then
                     plost = plost+point%power
@@ -102,7 +98,7 @@ contains
                     !-------------------------------------
 
                     if (ipri.gt.1) then
-                        tetin0=tet1+htet*(itet-1)
+                        tetin0=current_trajectory%tetin   !tet1+htet*(itet-1)
                         write (*,111) tetin0, point%Ntor
 111                     format(1x,'traj. with tet0=',f10.5,1x,', Ninput=',f10.5,1x,'failed')
                     end if
@@ -135,7 +131,7 @@ contains
 30              continue
                 pnab = pnab+powexit
 31              continue
-            end do
+        !    end do
             !if(ipri.gt.1) write(*,1003)itet,icall1,icall2,current_trajectory%nrefj,nbad1,nbad2
         end do
 1001    format (30x,i4,' iteration')

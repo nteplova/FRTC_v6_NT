@@ -5,6 +5,7 @@ module trajectory_module
 
     !integer, parameter :: max_num_trajectories = 30000
     !type(Trajectory), target ::  trajectories(max_num_trajectories)
+    integer :: number_of_trajectories
     type(Trajectory), allocatable, target ::  trajectories(:)
 contains
 
@@ -108,7 +109,7 @@ subroutine init_trajectories(iw0, spectr)
     integer,intent(in)         :: iw0
     type (Spectrum),intent(in) :: spectr
     type (SpectrumPoint) point
-    integer itet, inz, itr
+    integer itet, inz
     real(wp) htet
     real(wp) tetin
     if (allocated(trajectories)) deallocate(trajectories)
@@ -119,12 +120,12 @@ subroutine init_trajectories(iw0, spectr)
     !    find initial radius for a trajectory
     !    on the 1th iteration
     !-----------------------------------------
-    itr = 0 
+    number_of_trajectories = 0 
     do itet = 1,ntet
         tetin = tet1+htet*(itet-1)
         do inz = 1, spectr%size
-            itr = itr+1
-            current_trajectory => trajectories(itr)
+            number_of_trajectories = number_of_trajectories+1
+            current_trajectory => trajectories(number_of_trajectories)
             point = spectr%data(inz)
             call current_trajectory%init(tetin, inz)
             call rini(current_trajectory, point, iw0)
@@ -203,7 +204,8 @@ subroutine write_trajectories(tview, ispectr,nnz,ntet) !sav2008
     open(1,file=fname)
 
     ntraj=0 !sav2008
-    do itr=1,nnz*ntet !sav2008
+    !do itr=1,nnz*ntet !sav2008
+    do itr=1, number_of_trajectories
         pow=1.d0
         pl=zero
         pc=zero

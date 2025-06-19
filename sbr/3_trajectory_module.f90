@@ -103,15 +103,16 @@ subroutine init_trajectories(iw0, spectr)
     use rt_parameters, only: max_number_of_traj
     use rt_parameters, only: nr, kv, ntet
     use driver_module
-    use plasma, only: tet1, tet2
+    use plasma, only: tet1, tet2, gap_tet_minus, gap_tet_plus
     use spectrum_mod
     implicit none
     integer,intent(in)         :: iw0
     type (Spectrum),intent(in) :: spectr
     type (SpectrumPoint) point
-    integer itet, inz
+    integer itet, inz, tet_count
     real(wp) htet
     real(wp) tetin
+    real(wp) power_coeff
     if (allocated(trajectories)) deallocate(trajectories)
     allocate(trajectories(max_number_of_traj))
 
@@ -121,8 +122,12 @@ subroutine init_trajectories(iw0, spectr)
     !    on the 1th iteration
     !-----------------------------------------
     number_of_trajectories = 0 
+    tet_count = 0 
     do itet = 1,ntet
         tetin = tet1+htet*(itet-1)
+        !if (abs(tetin)<abs(tet1/4)) cycle
+        if ((gap_tet_minus<tetin).and.(tetin<gap_tet_plus)) cycle
+        tet_count = tet_count + 1
         do inz = 1, spectr%size
             number_of_trajectories = number_of_trajectories+1
             current_trajectory => trajectories(number_of_trajectories)
@@ -130,6 +135,11 @@ subroutine init_trajectories(iw0, spectr)
             call current_trajectory%init(tetin, inz)
             call rini(current_trajectory, point, iw0)
         enddo
+    enddo
+    power_coeff = float(ntet)/float(tet_count)
+    do inz = 1, spectr%size
+        point = spectr%data(inz)
+        point%power = point%power * power_coeff
     enddo
 
 end subroutine 

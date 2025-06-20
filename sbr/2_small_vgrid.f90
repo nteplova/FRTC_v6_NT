@@ -158,7 +158,7 @@ contains
         integer, intent(in) :: ispectr, iterat
         
         integer i, j, k
-        real(wp) :: dfout
+        real(wp) ::  dfout
         real(wp), dimension(:), allocatable:: vvj, vdfj
         integer :: klo,khi,ierr
         real(wp) :: r, hr, vt, vto, vmax

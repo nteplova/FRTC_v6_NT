@@ -425,9 +425,6 @@ module dispersion_module
     integer :: ivar
     !!common /bdeo/ ivar   
 
-    integer :: icall1, icall2
-    !common /aef2/ icall1,icall2        
-
     integer  :: izn
     !!common /abcde/ izn
 
@@ -484,8 +481,7 @@ contains
             pause
             !goto 70
         endif
-        icall1=icall1+1
-        
+          
         call calculate_metrics(pa, ptet)
 
         call calculate_dielectric_tensor(pa)
@@ -583,8 +579,7 @@ contains
         iconv=0
         irefl=0
         if(pa.ge.one.or.pa.le.zero) goto 70
-        icall1=icall1+1
-        
+
         call calculate_metrics(pa, ptet)
 
         call calculate_dielectric_tensor(pa)
@@ -666,7 +661,6 @@ contains
             return
         endif
 
-        icall1=icall1+1
         
         call calculate_metrics(pa, ptet)
 
@@ -787,7 +781,6 @@ contains
             return
         endif
 
-        icall1=icall1+1
         
         call calculate_metrics(pa, ptet)
 
@@ -869,8 +862,6 @@ contains
             return
         endif
 
-        icall1=icall1+1
-        
         call calculate_metrics(pa, ptet)
 
         call calculate_dielectric_tensor(pa)
@@ -1046,7 +1037,6 @@ contains
         real(wp) :: source
         real(wp) :: aimh
         !common /bcef/ ynz,ynpopq
-        !common /aef2/ icall1,icall2
 
         !integer :: irefl, iconv
         !common /cefn/ iconv,irefl
@@ -1069,8 +1059,7 @@ contains
         !sav2008       return
         !sav2008      end if
   
-        icall2=icall2+1
-        !!      pn=fn1(pa,fnr)
+          !!      pn=fn1(pa,fnr)
         !!      pn=fn2(pa,fnr,fnrr)
         if(inew.eq.0) then !vardens
          pn=fn1(pa,fnr)

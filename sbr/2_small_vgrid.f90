@@ -150,6 +150,7 @@ contains
         !!   recalculate f' for a new mesh
         use constants, only : zero
         use rt_parameters, only : nr, ni1, ni2, cdel
+        use rt_parameters, only : nr, ni1, ni2, cdel
         use plasma, only: vt0, fvt, cltn
         use nr_grid, only: vzmin, vzmax
         use maxwell, only: i0, vij, dfij

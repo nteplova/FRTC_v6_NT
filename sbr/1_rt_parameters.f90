@@ -98,6 +98,10 @@ module rt_parameters
     !! Zplus,    upper grill corner in centimeters
     real(wp) ::  zminus
     !! Zminus,   lower grill corner in centimeters
+    real(wp) ::  ZGapPlus
+    !! ZGapPlus -  upper grill gap corner in centimeters
+    real(wp) ::  ZGapMinus
+    !! ZGapMinus - lower grill gap corner in centimeters
     integer ::   ntet
     !! ntet,     theta grid number
     integer ::   nnz
@@ -183,7 +187,7 @@ module rt_parameters
             upl_fix, upl_value, &
             fp_solver, traj_len_seved, &
             max_number_of_traj, max_size_of_traj
-        namelist /grill_parameters/ Zplus, Zminus, ntet, nnz
+        namelist /grill_parameters/ Zplus, Zminus, ZGapPlus, ZGapMinus, ntet, nnz
         namelist /spectrum/ spectrum_type, spectrum_PWM, spectrum_coordinate_system 
         ! Namelist definition===============================
 

@@ -14,7 +14,7 @@ contains
         use plasma, only: find_volums_and_surfaces
         use rt_parameters, only: pabs0, ipri, niterat
         use rt_parameters, only: nr, kv, ntet, iw, pgiter, itend0
-        use trajectory_module, only: write_trajectories,  init_trajectory
+        use trajectory_module, only: write_trajectories,  init_trajectories
         use spectrum_mod
         use manager_mod
         use nr_grid, only: ppv1, ppv2
@@ -82,7 +82,7 @@ contains
         izz=zero
         kzero=kv
 
-        call init_trajectory
+        call init_trajectories(iw0, spectr)
         call init_alphas
         
         ! ----------------------------------------------------------------------

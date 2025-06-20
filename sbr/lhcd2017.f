@@ -79,6 +79,7 @@
             call eval_lhcd(pos_spectr, 'spectrum_pos', outpep)  
       else
             dij(:,:,1)=zero
+            outpep = 0
       end if      
 
       !!negative spectrum:
@@ -87,6 +88,7 @@
             call eval_lhcd(neg_spectr, 'spectrum_neg', outpem)  
        else
             dij(:,:,2)=zero
+            outpem = 0
        endif     
 
       do i=1,ngrid

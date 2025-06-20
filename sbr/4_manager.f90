@@ -11,8 +11,8 @@ contains
         use rt_parameters, only : nr, ipri, iw, nmaxm, pabs0, eps, eps_const            
         use trajectory_module
         use spectrum_mod
-        use iterator_mod,only: plost, pnab
-        use dispersion_module, only: icall1, icall2, yn3, ivar, izn, znakstart
+        use power, only: plost, pnab
+        use dispersion_module, only: yn3, ivar, izn, znakstart
         use driver_module, only: irs, iabsorp
         use trajectory_data
         implicit none
@@ -21,13 +21,13 @@ contains
         real(wp) pabs
         real(wp) pow
         integer ntet, iout, itr,  nnj,  n_it
-        integer maxref, iterat, nmax0, ibad, itet
-        integer nbad1, nbad2, inz
+        integer maxref, iterat, nmax0, ibad
+        !integer inz, itet
         integer iw0, ifail, iabsirp, inak0,ib,ie
         integer nmax, i, nb1,nb2
         real(wp) htet, hr, rin, xmin!, rstart
         real(wp) powexit, dltpow,  pow1, pgamma !, xm
-        real(wp) tetin0, tetin!, tet
+        real(wp) tetin0
 
         pabs = spectr%max_power*pabs0/1.d2
         print *, 'pabs =', pabs, spectr%max_power, pabs0
@@ -49,42 +49,21 @@ contains
             write(*,1002)
         end if
 
-        if(iterat.eq.0) then
-            !-----------------------------------------
-            !    find initial radius for a trajectory
-            !    on the 1th iteration
-            !-----------------------------------------
-            do itet = 1,ntet
-                tetin = tet1+htet*(itet-1)
-                do inz = 1, spectr%size
-                    itr = itr+1
-                    current_trajectory => trajectories(itr)
-                    point = spectr%data(inz)
-                    call current_trajectory%init(tetin, inz)
-                    call rini(current_trajectory, point, iw0)
-                enddo
-            enddo
-        endif
-
         ibad = 0
         itr = 0 
         !--------------------------------------
         ! begin outer loop on teta
         !--------------------------------------
-        do itet = 1,ntet
-            nbad1 = 0
-            nbad2 = 0
-            icall1 = 0
-            icall2 = 0
-            tetin = tet1+htet*(itet-1)
-            !--------------------------------------
+        !do itet = 1,ntet
+             !--------------------------------------
             ! begin inner loop on nz
             !--------------------------------------
-            do inz = 1, spectr%size
-                itr = itr+1
+        !    do inz = 1, spectr%size
+        do itr=1, number_of_trajectories
+        !        itr = itr+1
                 current_trajectory => trajectories(itr)
                 znakstart = current_trajectory%znakstart !  znakstart используется в ext4 
-                point = spectr%data(inz)
+                point = spectr%data(current_trajectory%spectrum_point_index)
 
                 if (current_trajectory%mbad.ne.0) then
                     plost = plost+point%power
@@ -109,8 +88,8 @@ contains
                 !-------------------------------------
                 call tracing(current_trajectory, nmax, nb1, nb2, pow, pabs)
                 eps = eps_const 
-                nbad1 = nbad1+nb1
-                nbad2 = nbad2+nb2
+                !nbad1 = nbad1+nb1
+                !nbad2 = nbad2+nb2
                 current_trajectory%nrefj = current_trajectory%nrefj + nmax
                 powexit = pow
                 if (iabsorp.lt.0) then
@@ -119,7 +98,7 @@ contains
                     !-------------------------------------
 
                     if (ipri.gt.1) then
-                        tetin0=tet1+htet*(itet-1)
+                        tetin0=current_trajectory%tetin   !tet1+htet*(itet-1)
                         write (*,111) tetin0, point%Ntor
 111                     format(1x,'traj. with tet0=',f10.5,1x,', Ninput=',f10.5,1x,'failed')
                     end if
@@ -152,8 +131,8 @@ contains
 30              continue
                 pnab = pnab+powexit
 31              continue
-            end do
-            if(ipri.gt.1) write(*,1003)itet,icall1,icall2,current_trajectory%nrefj,nbad1,nbad2
+        !    end do
+            !if(ipri.gt.1) write(*,1003)itet,icall1,icall2,current_trajectory%nrefj,nbad1,nbad2
         end do
 1001    format (30x,i4,' iteration')
 1002    format (6x,'n',5x,'call2',6x,'call4',6x,'nrefl',4x,'last',5x,'bad2',5x,'bad4')
@@ -163,105 +142,16 @@ contains
 1006    format (e14.7)
     end    
 
-
-    !real(wp) function rini(xm, tet, point, ifail) !sav2009
-    subroutine rini(traj, point, iw0)
-        !! вычисление начальной точки входа луча
-        use constants, only : zero
-        use rt_parameters, only : inew, nr, iw, spectrum_coordinate_system
-        use spectrum_mod, only : SpectrumPoint
-        use decrements, only : dhdnr 
-        use dispersion_module, only: ivar, yn3, izn, znakstart
-        use dispersion_module, only: find_all_roots, dhdomega
-        use metrics, only: g22, g33, co, si
-        use metrics, only: calculate_metrics
-        use driver_module, only: irs
-        use trajectory_data
-        implicit none
-        
-        class(Trajectory), intent(inout) :: traj
-        type(SpectrumPoint), intent(in)  :: point
-        integer, intent(in)              :: iw0
-        real(wp)  :: xm
-        real(wp)  :: tet 
-
-        integer :: ntry
-        real(wp) :: pa, prt, prm, hr 
-
-        real(wp),  parameter :: rhostart=1.d0
-        integer,   parameter :: ntry_max=5
-        integer :: num_roots
-        real(wp) :: xnr_root(4)
-        real(wp) :: znak
-        irs = 1
-        iw = iw0
-        izn = 1
-        hr = 1.d0/dble(nr+1)
-        tet = traj%tetin
-
-        ntry = 0
-        pa = rhostart
-        do while (ntry.lt.ntry_max.and.pa.ge.2d0*hr)
-            pa = rhostart-hr*dble(ntry)-1.d-4
-            ntry = ntry+1
-
-            ! вычисление g22 и g33
-            call calculate_metrics(pa, tet)
-
-            select case(spectrum_coordinate_system)
-            case(0) ! toroidal coordinates
-                yn3 = point%Ntor*dsqrt(g33)
-                xm  = point%Npol*dsqrt(g22)
-            case(1) ! magnetic coordinates
-                yn3 = point%Ntor*dsqrt(g33)/co 
-                xm  = point%Npol*dsqrt(g22)/si
-            case DEFAULT
-                print *, 'bad spectrum coordinate system'
-                stop
-            end select  
-
-            num_roots = find_all_roots(pa,xm,tet,xnr_root)
-             
-            if (num_roots>0) then
-                ! определение znakstart
-                znak = dhdomega(pa,tet,xnr_root(1),xm)
-                izn = 1
-                if(-znak*dhdnr.gt.zero) then
-                    izn=-1
-                    znak = dhdomega(pa,tet,xnr_root(2),xm)
-                    if(-znak*dhdnr.gt.zero) then
-                        write(*,*)'Exception: both modes go outward !!'
-                        stop
-                    end if
-                endif
-                traj%rin = pa
-                traj%tetzap = tet
-                traj%xmzap = xm
-                traj%rzap = pa
-                traj%yn3zap = yn3 
-                traj%irszap = irs 
-                traj%iwzap = iw
-                traj%iznzap = izn
-                traj%znakstart = znak ! оказалось,что нужно запоминать. znakstart используется в ext4
-                return
-            end if
-        end do
-        print *, 'error: no roots'
-        traj%mbad = 1 ! плохоая траектория
-    end      
-
     subroutine dqliter(dltpow, traj, h, powexit, iout) !sav2008
         !! вычисление поглощенной мощности вдоль траектории
         use constants, only: clt, zero
         use rt_parameters, only: itend0, kv
-        use iterator_mod, only: vlf, vrt, dflf, dfrt
-        use iterator_mod, only: distr
+        use small_vgrid, only: vlf, vrt, dflf, dfrt
+        use small_vgrid, only: distr
         use decrements, only: pdec1, pdec2, pdec3, pdecv
         use decrements, only: zatukh
-        use current, only: dfind
+        use power,  only: psum4, dfind
         use plasma, only: vperp
-        use iterator_mod, only: psum4
-        !use driver_module, only: pow
         use trajectory_data
         implicit none
 

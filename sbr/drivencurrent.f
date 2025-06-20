@@ -20,7 +20,7 @@
 ! NA1     Edge grid point number: ROC=RHO(NA1)
 ! GP2     2*Pi
           call my_timer%start('lhcd/drivencurrent_time.dat', time)
-          call drivencurrent95(outj, sigmaj, UPL, NRD, NA1, TIME, TAU, 
+          call driven_current(outj, sigmaj, UPL, NRD, NA1, TIME, TAU, 
      & ROC, RTOR, GP2)
              
             

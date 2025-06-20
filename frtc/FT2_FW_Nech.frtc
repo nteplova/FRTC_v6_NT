@@ -1,6 +1,6 @@
 {
-  "name": "FT2_base",
-  "comment": "base config",
+  "name": "FT2_FW_Nech",
+  "comment": "compare to full wave",
   "physical_parameters": {
     "freq": 0.92,
     "xmi1": 1.0,
@@ -20,7 +20,7 @@
     "kv": 30
   },
   "numerical_parameters": {
-    "nr": 30,
+    "nr": 60,
     "hmin1": 1e-6,
     "rrange": 0.0001,
     "eps": 1e-6,
@@ -45,22 +45,24 @@
   "options": {
     "ipri": 2,
     "iw": 1,
-    "ismth": 1,
+    "ismth": 0,
     "ismthalf": 0,
-    "ismthout": 1,
+    "ismthout": 0,
     "inew": -1,
     "itor": 1,
     "ipol": 1,
     "upl_fix": true,
     "upl_value": 0.0,
     "fp_solver": 0,
-    "traj_len_seved": 50,
+    "traj_len_seved": 250,
     "max_number_of_traj": 30000,
-    "max_size_of_traj": 10000
+    "max_size_of_traj": 15000
   },
   "grill_parameters": {
-    "Zplus": 8.0,
-    "Zminus": -8.0,
+    "Zplus": 6.5,
+    "Zminus": -6.5,
+    "ZGapPlus": 2.0,
+    "ZGapMinus": -2.0,
     "ntet": 15,
     "nnz": 100
   }

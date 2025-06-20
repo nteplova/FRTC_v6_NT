@@ -98,6 +98,10 @@ module rt_parameters
     !! Zplus,    upper grill corner in centimeters
     real(wp) ::  zminus
     !! Zminus,   lower grill corner in centimeters
+    real(wp) ::  ZGapPlus
+    !! ZGapPlus -  upper grill gap corner in centimeters
+    real(wp) ::  ZGapMinus
+    !! ZGapMinus - lower grill gap corner in centimeters
     integer ::   ntet
     !! ntet,     theta grid number
     integer ::   nnz
@@ -122,7 +126,11 @@ module rt_parameters
     !! - 1 save all
     !! 0 don't save
     !! >1 length seved
-    
+    integer :: max_number_of_traj
+    !! maximum number of trajectories
+    integer :: max_size_of_traj
+    !! maximum length of trajectories
+
     contains      
     subroutine show_parameters()          
       print*, "Freq = ", freq          
@@ -142,6 +150,8 @@ module rt_parameters
       print*, "upl_fix = ", upl_fix
       print*, "upl_value = ", upl_value 
       print*, "fp_solver = ", fp_solver 
+      print*, "max_number_of_traj = ", max_number_of_traj 
+      print*, "max_size_of_traj = ", max_size_of_traj       
 
       print*, "---------- spectrum --------------"
       print*, "spectrum_type = ", spectrum_type
@@ -175,8 +185,9 @@ module rt_parameters
         maxstep2, maxstep4
         namelist /options/ ipri, iw, ismth, ismthalf, ismthout, inew, itor, ipol, &
             upl_fix, upl_value, &
-            fp_solver, traj_len_seved
-        namelist /grill_parameters/ Zplus, Zminus, ntet, nnz
+            fp_solver, traj_len_seved, &
+            max_number_of_traj, max_size_of_traj
+        namelist /grill_parameters/ Zplus, Zminus, ZGapPlus, ZGapMinus, ntet, nnz
         namelist /spectrum/ spectrum_type, spectrum_PWM, spectrum_coordinate_system 
         ! Namelist definition===============================
 

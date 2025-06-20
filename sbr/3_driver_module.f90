@@ -287,12 +287,12 @@ contains
         use constants, only: clt, zero
         use rt_parameters, only: itend0, kv
         use plasma, only: fvt, vperp
-        use current, only: dfind
+        use power,  only: dfind
         use dispersion_module, only: ipow
         use decrements, only: vfound
         use decrements, only: cf1, cf2, cf3, cf4, cf5, cf6
         use decrements, only: icf1,icf2
-        use iterator_mod, only: vlf,vrt,dflf,dfrt
+        use small_vgrid, only: vlf,vrt,dflf,dfrt
         use decrements, only: zatukh ! function zatukh(psy,j,u,n)
         use decrements, only: pdec1,pdec2,pdec3,pdecv,pdecal,dfdv
         implicit none

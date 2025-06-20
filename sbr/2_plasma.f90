@@ -20,8 +20,8 @@ module plasma
     real(wp), dimension(:),allocatable:: con,tem,temi,zeff,afld
     real(wp), dimension(:),allocatable:: rh,rha,drhodr,delta,ell,gamm,amy
 
-    real(wp) tet1, tet2
-    !!common /a0a2/ 
+    real(wp) tet1, tet2, gap_tet_plus, gap_tet_minus
+    !! GRILL parameters 
 
     real(wp) xmi,cnye,cnyi,xsz,vt0 
     !!/a0ef3/ xmi,cnye,cnyi,xsz,vt0 
@@ -181,6 +181,19 @@ contains
 
     end subroutine
 
+    function calc_theta(z, xly) result(tet)
+        use constants
+        implicit none
+        real(wp) :: z, xly
+        real(wp) :: arg, tet
+        arg=(z-z0)/(xly*rm)
+        if(dabs(arg).lt.1.d0) then
+            tet=dasin(arg)      ! upper grill corner poloidal coordinate
+        else
+            tet=0.5d0*pi         ! upper grill corner poloidal coordinate
+        end if
+    end function
+
     subroutine init_parameters
         use constants
         use approximation
@@ -190,18 +203,10 @@ contains
         real(wp) :: hr, sss
     !!!   
         xly = fdf(one,cly,ncoef,xlyp)
-        arg1=(zplus-z0)/(xly*rm)
-        arg2=(zminus-z0)/(xly*rm)
-        if(dabs(arg1).lt.1.d0) then
-            tet1=dasin(arg1)      ! upper grill corner poloidal coordinate
-        else
-            tet1=0.5d0*pi         ! upper grill corner poloidal coordinate
-        end if
-        if(dabs(arg2).lt.1.d0) then
-            tet2=dasin(arg2)      ! lower grill corner poloidal coordinate
-        else
-            tet2=-0.5d0*pi        ! lower grill corner poloidal coordinate
-        end if   
+        tet1 = calc_theta(zplus, xly)
+        tet2 = calc_theta(zminus, xly)
+        gap_tet_plus = calc_theta(ZGapPlus, xly)
+        gap_tet_minus = calc_theta(ZGapMinus, xly)
         
         !------------------------------------------------------------
         ! calculate constants

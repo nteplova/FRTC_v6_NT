@@ -61,8 +61,13 @@ CCD3=VINT(CAR12B);  !absorbed power via collisional damping
 
 
 !===========Dynamic FRTC===========
-QLH=4.0;
+<<<<<<< Updated upstream
+
+QLH=4.0d0;
+=======
+!QLH=2.1d0;
 !QLH=4.0d0;
+>>>>>>> Stashed changes
 
 CF1=0.1d-3;  !interval between lhcd() calls, sec
 CF2=0.3d0;  !first call of lhcd()

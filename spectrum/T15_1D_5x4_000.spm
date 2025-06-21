@@ -1,0 +1,11 @@
+{
+  "name": "T15_1D_5x4_000",
+  "comment": "T15 1D PAM5x4ph000 cut16",
+  "spectrum": {
+    "kind": "spectrum_1D",
+    "source": "spcpz_PAM_5x4_000_cut16.dat",
+    "coordinate_system": 1,
+    "angle": 0.0,
+    "PWM": false
+  }
+}

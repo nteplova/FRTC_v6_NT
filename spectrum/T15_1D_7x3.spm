@@ -1,0 +1,11 @@
+{
+  "name": "T15_1D_7x3",
+  "comment": "T15 1D PAM7x3 cut16",
+  "spectrum": {
+    "kind": "spectrum_1D",
+    "source": "spcpz_PAM_7x3_cut16.dat",
+    "coordinate_system": 1,
+    "angle": 0.0,
+    "PWM": false
+  }
+}

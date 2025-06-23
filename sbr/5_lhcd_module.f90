@@ -13,7 +13,8 @@ contains
         use plasma, only: nspl, cltn, rh, r0, con, tcur
         use plasma, only: find_volums_and_surfaces
         use rt_parameters, only: pabs0, ipri, niterat
-        use rt_parameters, only: nr, kv, ntet, iw, pgiter, itend0
+        use rt_parameters, only: nr, kv, ntet, pgiter, itend0
+        use rt_parameters, only: iw, iw_start
         use trajectory_module, only: write_trajectories,  init_trajectories
         use spectrum_mod
         use manager_mod
@@ -57,6 +58,7 @@ contains
 
         plaun = spectr%input_power
         ispectr = spectr%direction
+        iw = iw_start
         iw0=iw
     
         call find_volums_and_surfaces

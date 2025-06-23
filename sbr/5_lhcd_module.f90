@@ -18,6 +18,7 @@ contains
         use spectrum_mod
         use manager_mod
         use nr_grid, only: ppv1, ppv2
+        use nr_grid, only: pdprev1, pdprev2        
         use nr_grid, only: init_nr_grid_arrays, find_nevyazka
         use nr_grid, only: calculate_total_current_and_power
         use nr_grid, only: find_achieved_radial_points, renormalisation_power
@@ -98,6 +99,9 @@ contains
         !!!!!!!!!!!!!!! begin iterations !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         q_rest=plaun
         iterat=0
+        !! массивы для невзязки
+        pdprev1=zero
+        pdprev2=zero
 
     80  continue
         call manager(iterat, iw0, ntet, spectr)

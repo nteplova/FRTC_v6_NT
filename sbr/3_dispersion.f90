@@ -521,7 +521,7 @@ contains
                 ivar=-1
                 return
             end if
-            print *, 'reflection'
+            !print *, 'reflection'
             !pause
             iw=-iw
             ivar=10

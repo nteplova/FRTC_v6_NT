@@ -78,7 +78,7 @@ module rt_parameters
 !!!!!!!!!!!!!  options !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     integer ::  ipri
     !! ipri, printing output monitoring: 0,1,2,3,4
-    integer ::  iw
+    integer ::  iw, iw_start
     !! iw, initial mode (slow=1, fast=-1)
     integer ::  ismth
     !! ismth, if=0, no smoothing in Ne(rho),Te(rho),Ti(rho)
@@ -205,6 +205,7 @@ module rt_parameters
         read (nml=grill_parameters, iostat=iostat, unit=file_unit)
         read (nml=spectrum, iostat=iostat, unit=file_unit)
 
+        iw_start = iw
         pabs0 = pabs
         eps_const = eps
         i_pol = ipol

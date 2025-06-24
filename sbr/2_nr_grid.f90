@@ -49,10 +49,6 @@ subroutine init_nr_grid_arrays(cltn)
     pda=zero
     pdfast=zero
 
-    !! массивы для невзязки
-    pdprev1=zero
-    pdprev2=zero
-
     dql=zero
     dq1=zero
     dq2=zero

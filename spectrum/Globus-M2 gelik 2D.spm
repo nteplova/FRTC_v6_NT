@@ -1,9 +1,9 @@
 {
-  "name": "t15_2D",
-  "comment": "t15pam4rbox_2D_correct.dat",
+  "name": "Globus-M2 gelik 2D",
+  "comment": "",
   "spectrum": {
     "kind": "scatter_spectrum",
-    "source": "t15pam4rbox_2D_correct.dat",
+    "source": "spGlobushelic.dat",
     "coordinate_system": 0,
     "angle": 0.0,
     "PWM": true

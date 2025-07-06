@@ -1,0 +1,10 @@
+{
+  "name": "Dev_spcp2_clone_51d1",
+  "comment": "ccc",
+  "spectrum": {
+    "kind": "spectrum_2D",
+    "source": "D:/Dev/spcp2.dat",
+    "coordinate_system": 0,
+    "angle": 0.0
+  }
+}

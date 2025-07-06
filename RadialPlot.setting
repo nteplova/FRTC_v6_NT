@@ -12,8 +12,8 @@
       "y_label": "Value [arb. unit]",
       "data": [
         "J",
-        "Jlh",
-        "Johm"
+        "Johm",
+        "Jlh"
       ]
     },
     {
@@ -21,8 +21,7 @@
       "title": "профили E",
       "y_label": "Value [arb. unit]",
       "data": [
-        "E",
-        "En"
+        "Q"
       ]
     },
     {
@@ -39,7 +38,8 @@
       "title": "профили температуры",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Te"
+        "Te",
+        "Ne"
       ]
     }
   ]

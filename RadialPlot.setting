@@ -12,7 +12,6 @@
       "y_label": "Value [arb. unit]",
       "data": [
         "J",
-        "Johm",
         "Jlh"
       ]
     },
@@ -29,8 +28,7 @@
       "title": "профили мощности",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Plh",
-        "Poh"
+        "Plh"
       ]
     },
     {

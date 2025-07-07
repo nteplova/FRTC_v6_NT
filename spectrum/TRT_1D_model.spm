@@ -6,6 +6,6 @@
     "source": "TRT_model.dat",
     "coordinate_system": 0,
     "angle": 0.0,
-    "PWM": false
+    "PWM": true
   }
 }

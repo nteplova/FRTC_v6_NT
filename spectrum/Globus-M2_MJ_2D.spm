@@ -3,7 +3,7 @@
   "comment": "",
   "spectrum": {
     "kind": "scatter_spectrum",
-    "source": "MJcase2d.dat",
+    "source": "spMJ2D.dat",
     "coordinate_system": 0,
     "angle": 0.0,
     "PWM": true

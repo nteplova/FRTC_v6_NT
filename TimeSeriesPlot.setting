@@ -11,8 +11,8 @@
       "title": "Chart 1",
       "y_label": "Value [arb. unit]",
       "data": [
-        "U",
-        "Ux"
+        "IPL",
+        "ICD"
       ]
     },
     {
@@ -28,7 +28,7 @@
       "title": "Chart 3",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Ilh"
+        "QLh"
       ]
     }
   ]

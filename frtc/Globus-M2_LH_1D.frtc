@@ -1,5 +1,5 @@
 {
-  "name": "Globus-M2_LH",
+  "name": "Globus-M2_LH_1D",
   "comment": "T51_R4",
   "physical_parameters": {
     "freq": 2.45,
@@ -20,21 +20,21 @@
     "kv": 30
   },
   "numerical_parameters": {
-    "nr": 30,
+    "nr": 60,
     "hmin1": 1e-6,
     "rrange": 0.0001,
     "eps": 1e-6,
     "hdrob": 1.5,
     "cleft": 0.7,
     "cright": 1.5,
-    "cdel": 0.25,
+    "cdel": 0.5,
     "rbord": 0.999,
     "pchm": 0.2,
     "pabs": 0.01,
     "pgiter": 0.0001,
-    "ni1": 20,
-    "ni2": 20,
-    "niterat": 99,
+    "ni1": 10,
+    "ni2": 10,
+    "niterat": 10,
     "nmaxm_1": 20,
     "nmaxm_2": 20,
     "nmaxm_3": 20,
@@ -55,15 +55,15 @@
     "upl_value": 0.0,
     "fp_solver": 0,
     "traj_len_seved": -1,
-    "max_number_of_traj": 30000,
+    "max_number_of_traj": 3000000,
     "max_size_of_traj": 300000
   },
   "grill_parameters": {
-    "Zplus": 9.875,
-    "Zminus": -9.875,
-    "ZGapPlus": 0.875,
-    "ZGapMinus": -0.875,
-    "ntet": 40,
+    "Zplus": 10.75,
+    "Zminus": -10.75,
+    "ZGapPlus": 1.75,
+    "ZGapMinus": -1.75,
+    "ntet": 20,
     "nnz": 100
   }
 }

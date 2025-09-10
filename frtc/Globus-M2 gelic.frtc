@@ -1,8 +1,8 @@
 {
-  "name": "Globus-M",
-  "comment": "T51_R4",
+  "name": "Globus-M2 gelic",
+  "comment": "",
   "physical_parameters": {
-    "freq": 2.45,
+    "freq": 0.2,
     "xmi1": 2.0,
     "zi1": 1.0,
     "xmi2": 1.0,
@@ -20,7 +20,7 @@
     "kv": 30
   },
   "numerical_parameters": {
-    "nr": 30,
+    "nr": 50,
     "hmin1": 1e-6,
     "rrange": 0.0001,
     "eps": 1e-6,
@@ -28,9 +28,9 @@
     "cleft": 0.7,
     "cright": 1.5,
     "cdel": 0.25,
-    "rbord": 0.999,
+    "rbord": 0.9,
     "pchm": 0.2,
-    "pabs": 0.01,
+    "pabs": 0.1,
     "pgiter": 0.0001,
     "ni1": 20,
     "ni2": 20,
@@ -48,17 +48,21 @@
     "ismth": 1,
     "ismthalf": 0,
     "ismthout": 1,
-    "inew": -1,
+    "inew": 1,
     "itor": 1,
     "ipol": 1,
     "upl_fix": false,
     "upl_value": 0.0,
     "fp_solver": 0,
-    "traj_len_seved": -1
+    "traj_len_seved": 10,
+    "max_number_of_traj": 3000000,
+    "max_size_of_traj": 3000
   },
   "grill_parameters": {
-    "Zplus": 20.0,
-    "Zminus": -20.0,
+    "Zplus": 10.0,
+    "Zminus": -10.0,
+    "ZGapPlus": 0.0,
+    "ZGapMinus": 0.0,
     "ntet": 5,
     "nnz": 100
   }

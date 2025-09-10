@@ -160,8 +160,8 @@ subroutine find_achieved_radial_points(nvpt)
     end do
     if (jend.eq.0.or.jbeg.ge.jend) then
         write(*,*)'failure: jbeg=',jbeg,' jend=',jend 
-        pause
-        stop
+       ! pause
+       ! stop
     end if
 end subroutine  
 

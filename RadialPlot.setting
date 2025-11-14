@@ -4,12 +4,12 @@
   "show_axis_labels": true,
   "shape": "2x2",
   "x_axis": "rho",
-  "x_label": "Value [arb. unit]",
+  "x_label": "rho",
   "sub_plots": [
     {
       "name": "ax1",
       "title": "профили токов",
-      "y_label": "Value [arb. unit]",
+      "y_label": "J, MA/m2",
       "data": [
         "J",
         "Jlh"
@@ -18,7 +18,7 @@
     {
       "name": "ax2",
       "title": "профили E",
-      "y_label": "Value [arb. unit]",
+      "y_label": "Q",
       "data": [
         "Q"
       ]
@@ -26,7 +26,7 @@
     {
       "name": "ax3",
       "title": "профили мощности",
-      "y_label": "Value [arb. unit]",
+      "y_label": "P, MW/m3",
       "data": [
         "Plh"
       ]
@@ -34,7 +34,7 @@
     {
       "name": "ax4",
       "title": "профили температуры",
-      "y_label": "Value [arb. unit]",
+      "y_label": "Te, keV; Ne, *10^19cm-3",
       "data": [
         "Te",
         "Ne"

@@ -18,7 +18,7 @@ module small_vgrid
     real(wp) :: vlf,vrt,dflf,dfrt
     !common /a0ghp/ vlf,vrt,dflf,dfrt
         
-    integer, parameter :: kpt1=20, kpt3=20
+    integer, parameter :: kpt1=20, kpt3=20  !kpt1=20, kpt3=20
 
 contains
 
@@ -231,8 +231,8 @@ contains
         !c find velocity limits and initial dfdv
         !c--------------------------------------------
         ipt1=kpt1+1
-        ipt2=ni1+ni2
-        ipt=ipt1+ni1+ni2+kpt3
+        ipt2=ni1+ni2  !in plato
+        ipt=ipt1+ni1+ni2+kpt3 ! points in vgrid in ray-tracing
         if(ipt.gt.MAX_PT) then
             write(*,*)'ipt >MAX_PT'
             pause'stop program'

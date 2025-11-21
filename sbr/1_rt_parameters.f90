@@ -331,10 +331,10 @@ module rt_parameters
         if(nr.gt.100) nr=100
         if(ni1.eq.0) ni1=20
         if(ni2.eq.0) ni2=20
-        if(ni1+ni2.gt.100) then
-            ni1=60
-            ni2=40
-        end if
+        !if(ni1+ni2.gt.100) then
+        !    ni1=60
+         !   ni2=40
+        !end if
         if(nnz*ntet.gt.10000) then
             nnz=250
             ntet=40

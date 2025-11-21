@@ -10,7 +10,7 @@ module small_vgrid
     real(wp) :: dj2(MAX_PT),d2j(MAX_PT)
 
     real(wp) :: vgrid(MAX_PT,MAX_NR), dfundv(MAX_PT,MAX_NR)
-    !!common/gridv/vgrid(101,100),dfundv(101,100)
+    !!common/gridv/vgrid(1000,100),dfundv(1000,100)
     integer  :: nvpt
     !!common/gridv/nvpt
     integer :: ipt1, ipt2, ipt
@@ -18,7 +18,7 @@ module small_vgrid
     real(wp) :: vlf,vrt,dflf,dfrt
     !common /a0ghp/ vlf,vrt,dflf,dfrt
         
-    integer, parameter :: kpt1=20, kpt3=20  !kpt1=20, kpt3=20
+    integer, parameter :: kpt1=100, kpt3=50  !kpt1=20, kpt3=20
 
 contains
 
@@ -33,7 +33,7 @@ contains
         real(wp) :: dfout
         !real*8 vlf,vrt,dflf,dfrt
         !common /a0ghp/ vlf,vrt,dflf,dfrt
-        !common/gridv/vgrid(101,100),dfundv(101,100),nvpt
+        !common/gridv/vgrid(1000,100),dfundv(1000,100),nvpt
 
         nvp=nvpt
         allocate(vzj(nvp),dfdvj(nvp))

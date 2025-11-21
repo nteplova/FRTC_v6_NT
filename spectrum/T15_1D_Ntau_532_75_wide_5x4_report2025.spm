@@ -1,0 +1,11 @@
+{
+  "name": "T15_1D_Ntau_532_75_wide_5x4_report2025",
+  "comment": "Ntau 5x4 532 ph75 Irzak",
+  "spectrum": {
+    "kind": "spectrum_1D",
+    "source": "532_75_spcp(Ntau).dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": false
+  }
+}

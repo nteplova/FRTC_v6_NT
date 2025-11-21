@@ -238,7 +238,7 @@ contains
         real(wp) :: pn, fnr, fnrr
         real(wp) :: dconst, ddout
         real(wp) :: dijk(MAX_PT,100,2), vrjnew(MAX_PT,100,2)
-        !встречает только один раз common/t01/dijk(101,100,2), vrjnew(101,100,2)
+        !встречает только один раз common/t01/dijk(1000,100,2), vrjnew(1000,100,2)
         !
         hr = 1.d0/dble(nr+1)
         k=(3-ispectr)/2
@@ -257,7 +257,7 @@ contains
             dconst=vt0/(1.d-10*cnyfoc*pme*pn**2) !divided by 10^-10 here 
             !!!!!!!!                         and multiplied by 10^-10 in dfind()
             !!!old       dconst=vt0/(cnyfoc*pme*pn**2)
-            !!!        dj(i)=dql(i,j)*dconst*vto !D_normir
+            !!!        dj(i)=dql(i,j)**vto !D_normir
             do i=1,ipt
                 vrj(i)=vgrid(i,j)/vto      !Vpar/Vt
                 dj(i)=dql(i,j)*dconst*vto  !D_normir

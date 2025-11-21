@@ -3,13 +3,13 @@ module maxwell
       use kind_module      
       use constants, only : zero, pisqrt, pi2sqrt, pqe
       implicit none
-      integer, parameter :: i0 = 1002
+      integer, parameter :: i0 = 5010
 
-      real(wp) v_grid(i0,100)
+      real(wp) v_grid(i0,1000)
       !! сетка обычных скоростей
 
-      real(wp) vij(i0,100), fij0(i0,100,2), fij(i0,100,2)
-      real(wp) dfij(i0,100,2), dij(i0,100,2)
+      real(wp) vij(i0,1000), fij0(i0,1000,2), fij(i0,1000,2)
+      real(wp) dfij(i0,1000,2), dij(i0,1000,2)
 
       logical flag_d0
       !! бывший d0

@@ -1,0 +1,11 @@
+{
+  "name": "T15_2D_Ntau_418_ph-060_wide_7x3_newreport2025",
+  "comment": "T15_2D_Ntau_418_ph-060_wide_7x3_newreport2025",
+  "spectrum": {
+    "kind": "scatter_spectrum",
+    "source": "T15dec25_418new_ph-60s2d.dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": true
+  }
+}

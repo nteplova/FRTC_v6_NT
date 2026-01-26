@@ -1,0 +1,11 @@
+{
+  "name": "cut_lev_t15_2D_499",
+  "comment": "t15pam4rbox_2D_correct.dat",
+  "spectrum": {
+    "kind": "scatter_spectrum",
+    "source": "cut_lev_T15oct25sh499s2d.dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": true
+  }
+}

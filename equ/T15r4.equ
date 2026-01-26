@@ -8,7 +8,7 @@ TSTART = 0.11;
 TEND = 0.305;
 TINIT=0.299;
 TSCALE = 0.006;
-TPAUSE = 0.308;
+TPAUSE = 0.311;
 
      
 !BTOR=1.0d0;
@@ -42,18 +42,6 @@ CAR30X = NN*(NNCL+NNWM);  ! density of neutrals
 CAR31X = 1.5e-6           ! to substitute this for "volume" neutral density
 
 
-!============Stationary FRTC 2014============
-!QLH=ZRD1;
-!QLH=0.12d0*(FRAMP(0.180,0.182)-FJUMP(0.3d0));
-CF1=0.18d0;
-CF2=0.195d0;
-!CF3=1.d-4;
-!lhcd(0.d0,CULH,PELH,CAR12,CAR13,CAR14,CAR15):0.001:0.185::A;
-!CAR12 = power deposition into electrons via collisional damping
-!CAR13 = power deposition into electrons in 'fast mode'
-!CAR14 = power deposition into fast alphas
-!CAR15 = relative density profile of fast alphas
-!CAR16 = amy(rho)
 
 CCD1=VINT(PELHB);   !absorbed QLH power
 CCD2=IINT(CULHB);   !driven current
@@ -62,12 +50,11 @@ CCD3=VINT(CAR12B);  !absorbed power via collisional damping
 
 !===========Dynamic FRTC===========
 QLH=4.0;
-!QLH=4.0d0;
 
 CF1=0.1d-3;  !interval between lhcd() calls, sec
 CF2=0.3d0;  !first call of lhcd()
 CF3=0.61d0;
-!debug:0.0001:DSTART::;
+
 DSTART=0.299;
 debug:0.0001:DSTART::;
 saveprofiles::CF2:CF3:;
@@ -119,7 +106,7 @@ NE=NEX;
 CAR17=(2.5-0.8)*((1-(AMETR/0.223)**1.5)**8)+0.79;
 CAR19=(0.8-0.6)*((1-(AMETR/0.223)**15)**2)+0.6;
 CAR18=CAR17*STEP(0.161-AMETR)+CAR19*STEP(AMETR-0.161)+0.001;
-!NE=(1.1-0.3)*((1-(AMETR/ABC)**2)**1)+0.3;
+!NE=(2.7-0.2)*((1-(AMETR/ABC)**2.5)**1)+0.2;
 !NE=CAR19+0.001;
 
 CAR11 = (1.0*(1.0-ASTEP(CF6))+0.10*ASTEP(CF6));  ! 1

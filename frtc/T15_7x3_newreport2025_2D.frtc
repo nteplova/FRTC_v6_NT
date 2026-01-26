@@ -1,6 +1,6 @@
 {
-  "name": "T15_7x3",
-  "comment": "T51_R4",
+  "name": "T15_7x3_newreport2025_2D",
+  "comment": "correction to report 2025 7x3",
   "physical_parameters": {
     "freq": 2.45,
     "xmi1": 2.0,
@@ -20,20 +20,20 @@
     "kv": 30
   },
   "numerical_parameters": {
-    "nr": 60,
+    "nr": 100,
     "hmin1": 1e-6,
     "rrange": 0.1,
     "eps": 1e-6,
     "hdrob": 1.5,
     "cleft": 0.7,
     "cright": 1.5,
-    "cdel": 0.5,
+    "cdel": 0.25,
     "rbord": 0.999,
     "pchm": 0.2,
     "pabs": 0.01,
     "pgiter": 0.00001,
-    "ni1": 10,
-    "ni2": 10,
+    "ni1": 100,
+    "ni2": 100,
     "niterat": 199,
     "nmaxm_1": 500,
     "nmaxm_2": 50,
@@ -55,15 +55,15 @@
     "upl_value": 0.0,
     "fp_solver": 0,
     "traj_len_seved": 0,
-    "max_number_of_traj": 30000,
-    "max_size_of_traj": 9000
+    "max_number_of_traj": 500000,
+    "max_size_of_traj": 300000
   },
   "grill_parameters": {
-    "Zplus": 34.29,
-    "Zminus": -34.29,
+    "Zplus": 33.0,
+    "Zminus": -33.0,
     "ZGapPlus": 0.0,
     "ZGapMinus": 0.0,
-    "ntet": 21,
+    "ntet": 7,
     "nnz": 51
   }
 }

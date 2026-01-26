@@ -1,0 +1,11 @@
+{
+  "name": "T15_1D_Ntau_418_ph+000_wide_7x3_newreport2025",
+  "comment": "Ntau 7x3 418 ph+000 Irzak",
+  "spectrum": {
+    "kind": "spectrum_1D",
+    "source": "spcp(Ntau)_418new7x3ph+000.dat",
+    "coordinate_system": 0,
+    "angle": 0.0,
+    "PWM": false
+  }
+}
